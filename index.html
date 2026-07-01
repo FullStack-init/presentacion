@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroAILab - Presentación</title>
+    
+    <!-- Tipografías -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ========== VARIABLES NEUMORFISMO ========== */
+        :root {
+            --bg: #e8ede4;
+            --surface: #f5f7f3;
+            --card: #f5f7f3;
+            --text: #1e2a1f;
+            --text-secondary: #3d4f40;
+            --muted: #5b6e60;
+            --accent: #4a874d;
+            --accent-strong: #3b6e3e;
+            --accent-light: #a8d4a9;
+            --accent-bg: #dce8db;
+            --accent2: #2563eb;
+            --gold: #b8860b;
+            --shadow-dark: rgba(139, 150, 140, 0.45);
+            --shadow-light: rgba(255, 255, 255, 0.85);
+            --radius: 16px;
+            --radius-lg: 22px;
+            --neu-elevation: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+            --neu-elevation-sm: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+            --neu-inset: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* ========== CONTENEDOR PRINCIPAL ========== */
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ========== SLIDES ========== */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 90px 60px 100px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        /* ========== SCROLLBAR PERSONALIZADO ========== */
+        .slide::-webkit-scrollbar {
+            width: 8px;
+        }
+        .slide::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .slide::-webkit-scrollbar-thumb {
+            background: var(--accent-light);
+            border-radius: 4px;
+        }
+        .slide::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-strong);
+        }
+
+        /* ========== CONTENIDO DE SLIDES ========== */
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding-bottom: 20px;
+        }
+
+        .slide-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .slide-subtitle {
+            font-size: 1.15rem;
+            color: var(--muted);
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--accent-strong);
+            font-weight: 700;
+        }
+
+        /* ========== CARDS NEUMÓRFICAS ========== */
+        .card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--neu-elevation);
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: var(--bg);
+            box-shadow: var(--neu-inset);
+        }
+
+        .card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .card p, .card li {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            text-align: center;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+            text-align: left;
+        }
+
+        .card li:before {
+            content: "•";
+            color: var(--accent-strong);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* ========== IMÁGENES ========== */
+        .slide-image {
+            max-width: 500px;
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--neu-elevation);
+            overflow: hidden;
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: var(--bg);
+            box-shadow: var(--neu-inset);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 1rem;
+            border-radius: var(--radius-lg);
+        }
+
+        /* ========== TABLAS ========== */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: var(--neu-elevation);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid rgba(139, 150, 140, 0.1);
+        }
+
+        .comparison-table th {
+            background: var(--accent-bg);
+            color: var(--accent-strong);
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--surface);
+        }
+
+        .comparison-table tr.highlight-row {
+            background: var(--accent-bg) !important;
+            font-weight: 700;
+        }
+
+        /* ========== PILLS/BADGES ========== */
+        .neu-pill {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: var(--accent-bg);
+            color: var(--accent-strong);
+            box-shadow: var(--neu-elevation-sm);
+            margin: 5px;
+        }
+
+        /* ========== NAVIGATION BUTTONS ========== */
+        .nav-buttons {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: var(--neu-elevation);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:active {
+            box-shadow: var(--neu-inset);
+            transform: translateY(1px);
+        }
+
+        /* ========== SLIDE INDICATORS ========== */
+        .slide-indicators {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 60%;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg);
+            box-shadow: var(--neu-elevation-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--accent-strong);
+            width: 26px;
+            border-radius: 5px;
+        }
+
+        /* ========== LOGO Y HEADER ========== */
+        .slide-header {
+            position: fixed;
+            top: 20px;
+            left: 30px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 45px;
+            border-radius: var(--radius);
+            box-shadow: var(--neu-elevation-sm);
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 25px;
+            right: 30px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-weight: 600;
+            z-index: 1000;
+            background: var(--card);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            box-shadow: var(--neu-elevation-sm);
+        }
+
+        /* ========== STATS/NUMBERS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .stat-card {
+            background: var(--bg);
+            padding: 22px 15px;
+            border-radius: var(--radius);
+            box-shadow: var(--neu-inset);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-strong);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.3;
+        }
+
+        /* ========== ANIMACIONES ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide.active .slide-content > * {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .slide.active .slide-content > *:nth-child(1) { animation-delay: 0.05s; }
+        .slide.active .slide-content > *:nth-child(2) { animation-delay: 0.15s; }
+        .slide.active .slide-content > *:nth-child(3) { animation-delay: 0.25s; }
+        .slide.active .slide-content > *:nth-child(4) { animation-delay: 0.35s; }
+        .slide.active .slide-content > *:nth-child(5) { animation-delay: 0.45s; }
+        .slide.active .slide-content > *:nth-child(6) { animation-delay: 0.55s; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 80px 20px 90px 20px;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .slide-header {
+                left: 15px;
+                top: 15px;
+            }
+            
+            .slide-number {
+                right: 15px;
+                top: 20px;
+                font-size: 0.8rem;
+            }
+            
+            .slide-indicators {
+                max-width: 70%;
+                bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        <!-- Header con Logo -->
+        <div class="slide-header">
+            <img src="logo.png" alt="AgroAILab" class="logo" onerror="this.style.display='none'">
+        </div>
+        
+        <!-- Número de Slide -->
+        <div class="slide-number" id="slideNumber">1 / 14</div>
+
+        <!-- SLIDE 1: PORTADA -->
+        <div class="slide active" id="slide1">
+            <div class="slide-content">
+                <div class="neu-pill">Cultivo Evolutivo Descentralizado</div>
+                <h1 class="slide-title">Agro<span class="highlight">AILab</span></h1>
+                <p class="slide-subtitle">Tu Huerta Virtual Automatizada con Inteligencia Artificial</p>
+                
+                <div class="slide-image">
+                    <img src="foto1.png" alt="AgroAILab" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;><i class=&quot;fas fa-seedling&quot; style=&quot;font-size:3rem;margin-right:10px;&quot;></i>Imagen de Portada (foto1.png)</div>'">
+                </div>
+                
+                <div style="margin-top: 15px; color: var(--muted); font-size: 0.9rem; text-align: center;">
+                    <p>Leo (CEO) & Christian (CTO) | Concurso de Emprendimiento 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: EL PROBLEMA -->
+        <div class="slide" id="slide2">
+            <div class="slide-content">
+                <h1 class="slide-title">¿Cuánto tiempo nos queda de <span class="highlight">agua</span>?</h1>
+                <p class="slide-subtitle" style="font-size: 1.4rem; color: var(--accent-strong); font-weight: 700;">NADA. Ya cruzamos la línea roja.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Agua dulce para agricultura<br>con &lt;50% eficiencia</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Desperdicio en fruta/verdura<br>por cosecha a ciegas</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">4.000</span>
+                        <span class="stat-label">Km promedio que recorre<br>un alimento</span>
+                    </div>
+                </div>
+
+                <div class="card" style="max-width: 800px;">
+                    <p style="font-size: 1rem;"><strong>El Colapso del Modelo Centralizado:</strong> Quiebras globales de macro-factorías verticales (AppHarvest, Infarm). Centralizar la producción en naves masivas genera un CAPEX insostenible.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: LA SOLUCIÓN -->
+        <div class="slide" id="slide3">
+            <div class="slide-content">
+                <h1 class="slide-title">Revolución <span class="highlight">Descentralizada</span></h1>
+                <p class="slide-subtitle">Del Campo a tu Mesa en 0 KM</p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Problema Tradicional</th>
+                            <th>Disrupción AgroAILab</th>
+                            <th>Impacto Real</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Emergencia Hídrica</td>
+                            <td>Aeroponía circuito cerrado</td>
+                            <td><strong>95% menos agua</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Gigantismo Industrial</td>
+                            <td>Red Descentralizada (Modelo Uber)</td>
+                            <td><strong>CAPEX 70% menor</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Logística Ineficiente</td>
+                            <td>Micro-nodos urbanos</td>
+                            <td><strong>0 km transporte</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Cosecha a Ciegas</td>
+                            <td>Planta viva bajo demanda</td>
+                            <td><strong>0% desperdicio</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Producto Genérico</td>
+                            <td>Diseño Organoléptico por IA</td>
+                            <td><strong>Verdura a la Carta</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: PRODUCTO/TECNOLOGÍA -->
+        <div class="slide" id="slide4">
+            <div class="slide-content">
+                <h1 class="slide-title">Hardware + Software + <span class="highlight">Biología</span></h1>
+                <p class="slide-subtitle">Verdura a la Carta</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🌱</div>
+                        <h3>Aeroponía de Alta Precisión</h3>
+                        <ul>
+                            <li>Raíces en niebla nutritiva</li>
+                            <li>Sin sustrato, sin tierra</li>
+                            <li>Circuito cerrado de nutrientes</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤖</div>
+                        <h3>Inteligencia Artificial</h3>
+                        <ul>
+                            <li>Visión artificial 24/7</li>
+                            <li>Optimización espectral</li>
+                            <li>Predicción exacta de cosecha</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📱</div>
+                        <h3>Huerta Online (App)</h3>
+                        <ul>
+                            <li>Suscripción tarifa plana</li>
+                            <li>Diseño de perfil organoléptico</li>
+                            <li>Cosecha programada</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="slide-image" style="margin-top: 15px;">
+                    <img src="foto2.png" alt="Dashboard" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;><i class=&quot;fas fa-chart-line&quot; style=&quot;font-size:3rem;margin-right:10px;&quot;></i>Dashboard Interactivo (foto2.png)</div>'">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: PROTOTIPO MVP -->
+        <div class="slide" id="slide5">
+            <div class="slide-content">
+                <h1 class="slide-title">Prototipo <span class="highlight">MVP</span></h1>
+                <p class="slide-subtitle">Validación Técnica en Laboratorio UNIOVI (convenio en trámite)</p>
+                
+                <div class="card" style="max-width: 750px;">
+                    <h3 style="margin-bottom: 15px; color: var(--accent-strong);">Configuración Prototipo</h3>
+                    <ul style="text-align: left; margin-bottom: 15px;">
+                        <li><strong>Grid 4x4</strong> = 16 plantas de albahaca</li>
+                        <li><strong>Dimensiones:</strong> 80cm x 80cm x 120cm</li>
+                        <li><strong>Ubicación:</strong> Laboratorios Universidad de Oviedo</li>
+                    </ul>
+                    
+                    <h3 style="margin-bottom: 12px; color: var(--accent-strong);">Inversión Prototipo: €1.155</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.88rem;">
+                        <div>• Estructura + 3D: €250</div>
+                        <div>• Nebulización: €180</div>
+                        <div>• LEDs PWM: €220</div>
+                        <div>• Sensores: €150</div>
+                        <div>• Electrónica: €90</div>
+                        <div>• Cámara: €60</div>
+                        <div>• Insumos: €100</div>
+                        <div>• Imprevistos: €105</div>
+                    </div>
+                </div>
+
+                <div class="slide-image">
+                    <img src="foto3.png" alt="Prototipo" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;><i class=&quot;fas fa-cube&quot; style=&quot;font-size:3rem;margin-right:10px;&quot;></i>Prototipo 4x4 (foto3.png)</div>'">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: MODELO DE NEGOCIO -->
+        <div class="slide" id="slide6">
+            <div class="slide-content">
+                <h1 class="slide-title">Triple Flujo de <span class="highlight">Ingresos</span></h1>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <h3>Suscripción B2C</h3>
+                        <ul style="text-align: left;">
+                            <li>Plan Básico: <strong>€10/mes</strong></li>
+                            <li>Plan Estándar: <strong>€20/mes</strong></li>
+                            <li>Plan Premium: <strong>€30/mes</strong></li>
+                            <li>Entrega hiperlocal (3km)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏢</div>
+                        <h3>HORECA + Institucional</h3>
+                        <ul style="text-align: left;">
+                            <li>Precio: <strong>€2/planta</strong></li>
+                            <li>Colegios, hospitales</li>
+                            <li>Restaurantes premium</li>
+                            <li>Contrato anual mínimo</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>SaaS + HaaS</h3>
+                        <ul style="text-align: left;">
+                            <li>Licencia software: <strong>€150/mes</strong></li>
+                            <li>Módulos automatizados:<br><strong>€15-20k/unidad</strong></li>
+                            <li>Fase 2 de expansión</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stats-grid" style="margin-top: 15px;">
+                    <div class="stat-card">
+                        <span class="stat-number">€15-20k</span>
+                        <span class="stat-label">Inversión por local</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">€4-6k</span>
+                        <span class="stat-label">Ingreso máximo/mes</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">6-8</span>
+                        <span class="stat-label">Meses break-even</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: MERCADO OBJETIVO -->
+        <div class="slide" id="slide7">
+            <div class="slide-content">
+                <h1 class="slide-title">Del Micro-Nodo al <span class="highlight">Consumidor Urbano</span></h1>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">👥</div>
+                        <h3>Eco-Consumidores</h3>
+                        <p><strong>25-45 años</strong></p>
+                        <ul style="text-align: left; margin-top: 8px;">
+                            <li>Foodies, salud, sostenibilidad</li>
+                            <li>+20-30% por calidad</li>
+                            <li><strong>TAM: 3.2M España</strong></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🍽️</div>
+                        <h3>Canal HORECA</h3>
+                        <p><strong>Restaurantes km0</strong></p>
+                        <ul style="text-align: left; margin-top: 8px;">
+                            <li>Hoteles boutique</li>
+                            <li>Diferenciación</li>
+                            <li><strong>SAM: 15.000 establec.</strong></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏫</div>
+                        <h3>Sector Público</h3>
+                        <p><strong>Calidad nutricional</strong></p>
+                        <ul style="text-align: left; margin-top: 8px;">
+                            <li>Comedores escolares</li>
+                            <li>Hospitales</li>
+                            <li><strong>SOM: 500 centros</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="max-width: 800px; text-align: center;">
+                    <h3 style="color: var(--accent-strong); margin-bottom: 10px;">Estrategia Go-to-Market</h3>
+                    <p><strong>Fase 1:</strong> Asturias (validación local) - Colaboración con Cámara de Comercio de Oviedo<br>
+                    <strong>Fase 2:</strong> Madrid/Barcelona (escalado)<br>
+                    <strong>Fase 3:</strong> Franquicia de nodos (expansión)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: COMPETENCIA -->
+        <div class="slide" id="slide8">
+            <div class="slide-content">
+                <h1 class="slide-title">Posicionamiento <span class="highlight">Único</span></h1>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Competidor</th>
+                            <th>Precio</th>
+                            <th>Calidad</th>
+                            <th>Automatización</th>
+                            <th>Sostenibilidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Supermercados</td>
+                            <td>€€</td>
+                            <td>⭐⭐</td>
+                            <td>❌</td>
+                            <td>⚠️</td>
+                        </tr>
+                        <tr>
+                            <td>Importación</td>
+                            <td>€</td>
+                            <td>⭐</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                        </tr>
+                        <tr>
+                            <td>Productores Locales</td>
+                            <td>€€€</td>
+                            <td>⭐⭐⭐⭐</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td style="color: var(--accent-strong);">AGROAILAB</td>
+                            <td style="color: var(--accent-strong);">€€</td>
+                            <td style="color: var(--accent-strong);">⭐⭐⭐⭐⭐</td>
+                            <td style="color: var(--accent-strong);">✅ IA</td>
+                            <td style="color: var(--accent-strong);">✅ 95% agua</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card" style="max-width: 800px; text-align: center;">
+                    <p><strong>Ventaja Competitiva Clave:</strong> Única plataforma que combina:<br>
+                    <span class="highlight">Personalización por IA + Cero desperdicio + Suscripción ilimitada + Precio competitivo</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: TRACCIÓN Y ROADMAP -->
+        <div class="slide" id="slide9">
+            <div class="slide-content">
+                <h1 class="slide-title">De la Idea al <span class="highlight">Impacto Real</span></h1>
+                
+                <div style="width: 100%; max-width: 800px;">
+                    <div class="card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-strong);">
+                        <h3 style="color: var(--accent-strong);">✅ Logrado (2025)</h3>
+                        <ul style="text-align: left;">
+                            <li>Diseño conceptual completo</li>
+                            <li>Selección de componentes</li>
+                            <li>Dashboard interactivo funcional</li>
+                            <li>Equipo fundador consolidado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-light);">
+                        <h3 style="color: var(--accent-strong);">🔄 En Curso (Q4 2025 - Q1 2026)</h3>
+                        <ul style="text-align: left;">
+                            <li>Formalización convenio UNIOVI</li>
+                            <li>Creación asociación universitaria</li>
+                            <li>Colaboración Cámara de Comercio Oviedo</li>
+                            <li>Desarrollo prototipo 4x4</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 12px; border-left: 4px solid var(--gold); background: rgba(184, 134, 11, 0.08);">
+                        <h3 style="color: var(--gold);">🎯 Próximo Hito (Q2 2026)</h3>
+                        <ul style="text-align: left;">
+                            <li>MVP Funcional cerrado</li>
+                            <li>Validación biológica con albahaca</li>
+                            <li>Primeros datos reales</li>
+                            <li>LOIs con restaurantes locales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card" style="border-left: 4px solid var(--accent2);">
+                        <h3 style="color: var(--accent2);">📅 Escalado (Q3 2026 - 2027)</h3>
+                        <ul style="text-align: left;">
+                            <li>Ampliación a bancada mayor</li>
+                            <li>Análisis químico externo (GC-MS)</li>
+                            <li>Primer nodo piloto urbano</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: DAFO -->
+        <div class="slide" id="slide10">
+            <div class="slide-content">
+                <h1 class="slide-title">Análisis <span class="highlight">DAFO</span></h1>
+                
+                <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="card" style="border-top: 4px solid #10b981;">
+                        <h3 style="color: #10b981;">FORTALEZAS</h3>
+                        <ul style="text-align: left; font-size: 0.88rem;">
+                            <li>✅ Sinergia técnica sénior</li>
+                            <li>✅ 40 años experiencia sectorial</li>
+                            <li>✅ Modelo Asset-Light</li>
+                            <li>✅ Asociación universitaria</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-top: 4px solid #f59e0b;">
+                        <h3 style="color: #f59e0b;">DEBILIDADES</h3>
+                        <ul style="text-align: left; font-size: 0.88rem;">
+                            <li>⚠️ Equipo reducido</li>
+                            <li>⚠️ Sin tracción comercial</li>
+                            <li>⚠️ Prototipo en diseño</li>
+                            <li>⚠️ Convenio UNIOVI en trámite</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-top: 4px solid #3b82f6;">
+                        <h3 style="color: #3b82f6;">OPORTUNIDADES</h3>
+                        <ul style="text-align: left; font-size: 0.88rem;">
+                            <li>🚀 Fondos UE Agenda 2030</li>
+                            <li>🚀 Auge consumo sostenible</li>
+                            <li>🚀 Locales vacíos baratos</li>
+                            <li>🚀 Cámara de Comercio Oviedo</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-top: 4px solid #ef4444;">
+                        <h3 style="color: #ef4444;">AMENAZAS</h3>
+                        <ul style="text-align: left; font-size: 0.88rem;">
+                            <li>⛔ Volatilidad energética</li>
+                            <li>⛔ Competencia grandes superficies</li>
+                            <li>⛔ Inercia del sector</li>
+                            <li>⛔ Vacío regulatorio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: EQUIPO -->
+        <div class="slide" id="slide11">
+            <div class="slide-content">
+                <h1 class="slide-title">Nuestro <span class="highlight">Equipo</span></h1>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Leo</h3>
+                        <p style="color: var(--accent-strong); font-weight: 600; margin-bottom: 8px;">CEO/CFO</p>
+                        <ul style="text-align: left; font-size: 0.85rem;">
+                            <li>Finanzas (UADE) + Electrónica (UNIOVI)</li>
+                            <li>2 emprendimientos vendidos</li>
+                            <li>40 años frutería familiar</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Christian</h3>
+                        <p style="color: var(--accent-strong); font-weight: 600; margin-bottom: 8px;">CTO</p>
+                        <ul style="text-align: left; font-size: 0.85rem;">
+                            <li>Ing. Informática</li>
+                            <li>+10 años Full-Stack</li>
+                            <li>Experiencia Fintech/Agrofintech</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚙️</div>
+                        <h3>Colaboradores</h3>
+                        <ul style="text-align: left; font-size: 0.85rem;">
+                            <li>Álvaro: Ing. Mecánica</li>
+                            <li>Nicolás: Electrónica</li>
+                            <li>Sofía: Agronomía</li>
+                            <li>Marco: Comunicación</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="max-width: 800px; text-align: center;">
+                    <p><strong>Estructura Organizativa:</strong> Asociación Universitaria AgroAILab en constitución<br>
+                    <strong>Alianzas:</strong> UNIOVI (convenio en trámite) + Cámara de Comercio de Oviedo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: PROYECCIONES FINANCIERAS -->
+        <div class="slide" id="slide12">
+            <div class="slide-content">
+                <h1 class="slide-title">Proyecciones <span class="highlight">Financieras</span></h1>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">€25-30k</span>
+                        <span class="stat-label">Inversión inicial requerida</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">€3k</span>
+                        <span class="stat-label">Premio concurso<br>(componentes prototipo)</span>
+                    </div>
+                </div>
+
+                <table class="comparison-table" style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Año 1</th>
+                            <th>Año 2</th>
+                            <th>Año 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nodos operativos</td>
+                            <td>1 (piloto)</td>
+                            <td>2-3</td>
+                            <td>5-6</td>
+                        </tr>
+                        <tr>
+                            <td>Suscriptores</td>
+                            <td>30-50</td>
+                            <td>100-150</td>
+                            <td>300-400</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td style="color: var(--accent-strong);">Ingresos Totales</td>
+                            <td style="color: var(--accent-strong);">€13.2k</td>
+                            <td style="color: var(--accent-strong);">€60k</td>
+                            <td style="color: var(--accent-strong);">€180k</td>
+                        </tr>
+                        <tr>
+                            <td>EBITDA</td>
+                            <td style="color: #ef4444;">-€11.8k</td>
+                            <td style="color: #10b981;">€15k</td>
+                            <td style="color: #10b981;">€90k</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card" style="max-width: 600px; text-align: center;">
+                    <p style="font-size: 1.05rem;"><strong>Break-even:</strong> <span class="highlight">Mes 18-24 (Q2-Q4 2027)</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: PETICIÓN (THE ASK) -->
+        <div class="slide" id="slide13">
+            <div class="slide-content">
+                <h1 class="slide-title">¿Qué <span class="highlight">Necesitamos</span>?</h1>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">💶</div>
+                        <h3>Financiación Total</h3>
+                        <p style="font-size: 1.4rem; color: var(--accent-strong); font-weight: 700; margin: 12px 0;">€25.000-30.000</p>
+                        <ul style="text-align: left; font-size: 0.88rem;">
+                            <li>20% Prototipo + I+D</li>
+                            <li>30% Desarrollo software</li>
+                            <li>25% Validación comercial</li>
+                            <li>25% Capital trabajo</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏆</div>
+                        <h3>Premio Concurso</h3>
+                        <p style="font-size: 1.4rem; color: var(--accent-strong); font-weight: 700; margin: 12px 0;">€3.000</p>
+                        <p style="font-size: 0.88rem;"><strong>Destino:</strong> Componentes prototipo 4x4<br>
+                        (sensores, LEDs, electrónica, cámara)</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤝</div>
+                        <h3>A Cambio Ofrecemos</h3>
+                        <ul style="text-align: left; font-size: 0.88rem;">
+                            <li>Visibilidad en prensa</li>
+                            <li>Reporting trimestral</li>
+                            <li>Participación en hitos</li>
+                            <li>Equity: 5-10%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: CIERRE -->
+        <div class="slide" id="slide14">
+            <div class="slide-content">
+                <h1 class="slide-title">El Futuro de la Agricultura es <span class="highlight">Descentralizado</span></h1>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Ahorro hídrico</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">€3.2B</span>
+                        <span class="stat-label">TAM España</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">0km</span>
+                        <span class="stat-label">Logística</span>
+                    </div>
+                </div>
+
+                <div class="card" style="max-width: 700px; text-align: center;">
+                    <h3 style="color: var(--accent-strong); margin-bottom: 12px;">Próximos Pasos</h3>
+                    <p>✅ Formalizar convenio UNIOVI (Q4 2025)<br>
+                    ✅ Constituir asociación universitaria (Q1 2026)<br>
+                    ✅ Fabricar prototipo 4x4 (Q1 2026)<br>
+                    ✅ Validar biológicamente (Q2 2026)<br>
+                    ✅ Primer nodo piloto (Q4 2026)</p>
+                </div>
+
+                <div class="card" style="max-width: 700px;">
+                    <h3 style="color: var(--accent-strong); margin-bottom: 12px; text-align: center;">Contacto</h3>
+                    <p style="font-size: 1rem; text-align: center;">
+                        <i class="fas fa-envelope" style="margin-right: 8px; color: var(--accent-strong);"></i>Leo@AgroAILab.com<br>
+                        <i class="fas fa-phone" style="margin-right: 8px; color: var(--accent-strong);"></i>611 251 053<br>
+                        <i class="fas fa-globe" style="margin-right: 8px; color: var(--accent-strong);"></i>www.agroailab.com
+                    </p>
+                </div>
+
+                <div class="neu-pill" style="margin-top: 15px; font-size: 0.95rem; padding: 12px 28px;">
+                    ¿Cultivamos juntos el futuro?
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevSlide()" title="Anterior (←)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn" onclick="nextSlide()" title="Siguiente (→)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Slide Indicators -->
+        <div class="slide-indicators" id="slideIndicators"></div>
+    </div>
+
+    <script>
+        // ========== CONTROL DE SLIDES ==========
+        let currentSlide = 1;
+        const totalSlides = 14;
+
+        // Inicializar indicadores
+        function initIndicators() {
+            const container = document.getElementById('slideIndicators');
+            container.innerHTML = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator' + (i === 1 ? ' active' : '');
+                indicator.onclick = () => goToSlide(i);
+                indicator.title = 'Slide ' + i;
+                container.appendChild(indicator);
+            }
+        }
+
+        // Actualizar slide activo
+        function updateSlide() {
+            // Ocultar todas las slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+                slide.scrollTop = 0; // Reset scroll al cambiar de slide
+            });
+            
+            // Mostrar slide actual
+            const activeSlide = document.getElementById('slide' + currentSlide);
+            if (activeSlide) {
+                activeSlide.classList.add('active');
+            }
+            
+            // Actualizar número de slide
+            document.getElementById('slideNumber').textContent = currentSlide + ' / ' + totalSlides;
+            
+            // Actualizar indicadores
+            document.querySelectorAll('.indicator').forEach((ind, index) => {
+                ind.classList.toggle('active', index + 1 === currentSlide);
+            });
+        }
+
+        // Ir a slide específica
+        function goToSlide(n) {
+            if (n >= 1 && n <= totalSlides) {
+                currentSlide = n;
+                updateSlide();
+            }
+        }
+
+        // Siguiente slide
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        // Slide anterior
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            // No capturar teclas si se está escribiendo en un input
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                goToSlide(1);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                goToSlide(totalSlides);
+            }
+        });
+
+        // Touch/Swipe para móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 60) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            }
+        }
+
+        // Inicializar
+        initIndicators();
+        updateSlide();
+
+        // Prevenir scroll general de la página pero permitir scroll dentro de slides
+        document.addEventListener('wheel', (e) => {
+            const activeSlide = document.querySelector('.slide.active');
+            if (activeSlide) {
+                const atTop = activeSlide.scrollTop === 0;
+                const atBottom = activeSlide.scrollTop + activeSlide.clientHeight >= activeSlide.scrollHeight - 5;
+                
+                // Si está en el tope y trata de seguir scrolleando, cambiar de slide
+                if ((e.deltaY > 0 && atBottom) || (e.deltaY < 0 && atTop)) {
+                    e.preventDefault();
+                    if (e.deltaY > 0) nextSlide();
+                    else prevSlide();
+                }
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
