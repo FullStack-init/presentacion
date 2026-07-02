@@ -377,7 +377,7 @@
 <body>
 <div class="presentation-container">
 
-    <!-- Logo (animado: centrado grande en portada, esquina pequeño en demás) -->
+    <!-- Logo (animado: centrado grande en slide 1, esquina pequeño en demás) -->
     <div class="logo-container centered" id="logoContainer">
         <img src="logo.png" alt="AgroAILab" class="logo-img logo-big" id="mainLogo" onerror="this.style.display='none'">
     </div>
@@ -385,10 +385,20 @@
     <div class="slide-number" id="slideNumber"></div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 1: PORTADA (LOGO CENTRADO Y GRANDE)    -->
+    <!-- SLIDE 1: PORTADA LIMPIA (SOLO LOGO Y FRASE)  -->
     <!-- ============================================ -->
     <div class="slide active" data-slide="1">
-        <div class="slide-content" style="margin-top: 60px;">
+        <div class="slide-content">
+            <!-- El contenido se deja vacío a propósito para que el logo centrado destaque -->
+            <div class="neu-pill" style="font-size: 0.9rem; padding: 8px 24px; margin-top: 120px;">Cultivo Evolutivo Descentralizado</div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SLIDE 2: PORTADA CON IMAGEN DE ALTO IMPACTO  -->
+    <!-- ============================================ -->
+    <div class="slide" data-slide="2">
+        <div class="slide-content">
             <div class="neu-pill">Cultivo Evolutivo Descentralizado</div>
             <p class="slide-subtitle" style="font-size:1.15rem;">Micro-fábricas autónomas que cultivan por vos. Kilómetro cero, cero desperdicio.</p>
             <div class="slide-image" style="max-width:480px;">
@@ -398,9 +408,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 2: PROBLEMA + SOLUCIÓN (UNIFICADO)     -->
+    <!-- SLIDE 3: PROBLEMA + SOLUCIÓN (UNIFICADO)     -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="2">
+    <div class="slide" data-slide="3">
         <div class="slide-content">
             <h1 class="slide-title">Del <span class="highlight">Problema</span> a la <span class="highlight">Revolución</span></h1>
             <p class="slide-subtitle">La agricultura actual no es sostenible. Nosotros la cambiamos.</p>
@@ -426,9 +436,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 3: TECNOLOGÍA + AGRICULTURA            -->
+    <!-- SLIDE 4: TECNOLOGÍA + AGRICULTURA            -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="3">
+    <div class="slide" data-slide="4">
         <div class="slide-content">
             <h1 class="slide-title">Hardware + Software + <span class="highlight">Agricultura</span></h1>
             <p class="slide-subtitle">Un ecosistema integrado que automatiza el cultivo de principio a fin</p>
@@ -437,19 +447,19 @@
                 <div class="card"><div class="card-icon">🤖</div><h3>Inteligencia Artificial</h3><ul><li>Visión artificial 24/7</li><li>Optimización espectral</li><li>Predicción exacta de cosecha</li></ul></div>
                 <div class="card"><div class="card-icon">📱</div><h3>Huerta Online (App)</h3><ul><li>Suscripción tarifa plana</li><li>Diseño de perfil organoléptico</li><li>Cosecha programada</li></ul></div>
             </div>
-            <div class="card" style="max-width:700px;text-align:center;">
-                <p style="font-size:0.9rem;">AgroAILab combina <strong>aeroponía de alta presión</strong> con <strong>robótica autónoma</strong> e <strong>inteligencia artificial</strong> para crear la primera red descentralizada de micro-fábricas agrícolas. Cada terminal opera 24/7 sin intervención humana, aprende de cada cultivo y comparte conocimiento con toda la red.</p>
-            </div>
-            <div class="slide-image" style="margin-top:6px;">
+            <div class="slide-image" style="max-width:100%;">
                 <img src="foto2.png" alt="Dashboard" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;><i class=&quot;fas fa-chart-line&quot; style=&quot;font-size:2.2rem;margin-right:6px;&quot;></i>Dashboard Interactivo (foto2.png)</div>'">
+            </div>
+            <div class="card" style="max-width:100%; text-align:center; padding: 15px 20px;">
+                <p style="font-size:0.9rem; margin:0;">AgroAILab combina <strong>aeroponía de alta presión</strong> con <strong>robótica autónoma</strong> e <strong>inteligencia artificial</strong> para crear la primera red descentralizada de micro-fábricas agrícolas. Cada terminal opera 24/7 sin intervención humana, aprende de cada cultivo y comparte conocimiento con toda la red.</p>
             </div>
         </div>
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 4: PROTOTIPO MVP (RESUMIDO)            -->
+    <!-- SLIDE 5: PROTOTIPO MVP (RESUMIDO)            -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="4">
+    <div class="slide" data-slide="5">
         <div class="slide-content">
             <h1 class="slide-title">Prototipo <span class="highlight">MVP</span></h1>
             <p class="slide-subtitle">Lo que estamos construyendo ahora</p>
@@ -480,9 +490,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 5: MODELO DE NEGOCIO + DATOS           -->
+    <!-- SLIDE 6: MODELO DE NEGOCIO + DATOS           -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="5">
+    <div class="slide" data-slide="6">
         <div class="slide-content">
             <h1 class="slide-title">Triple Flujo de <span class="highlight">Ingresos</span></h1>
             <div class="card-grid">
@@ -503,9 +513,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 6: MERCADO OBJETIVO                    -->
+    <!-- SLIDE 7: MERCADO OBJETIVO                    -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="6">
+    <div class="slide" data-slide="7">
         <div class="slide-content">
             <h1 class="slide-title">Del Micro-Nodo al <span class="highlight">Consumidor Urbano</span></h1>
             <div class="card-grid">
@@ -521,9 +531,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 7: COMPETENCIA                         -->
+    <!-- SLIDE 8: COMPETENCIA                         -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="7">
+    <div class="slide" data-slide="8">
         <div class="slide-content">
             <h1 class="slide-title">Posicionamiento <span class="highlight">Único</span></h1>
             <table class="comparison-table">
@@ -542,9 +552,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 8: DAFO                               -->
+    <!-- SLIDE 9: DAFO                               -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="8">
+    <div class="slide" data-slide="9">
         <div class="slide-content">
             <h1 class="slide-title">Análisis <span class="highlight">DAFO</span></h1>
             <div class="card-grid" style="grid-template-columns:repeat(2,1fr);">
@@ -557,9 +567,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 9: EQUIPO (8 PERSONAS, COLABS AL FINAL)-->
+    <!-- SLIDE 10: EQUIPO (8 PERSONAS, COLABS AL FINAL) -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="9">
+    <div class="slide" data-slide="10">
         <div class="slide-content">
             <h1 class="slide-title">Nuestro <span class="highlight">Equipo</span></h1>
             <div class="team-grid">
@@ -627,16 +637,16 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 10: PLAN DE NEGOCIO (SIN COMPARATIVA)  -->
+    <!-- SLIDE 11: PLAN DE NEGOCIO (SIN COMPARATIVA)  -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="10">
+    <div class="slide" data-slide="11">
         <div class="slide-content">
             <h1 class="slide-title">Plan de <span class="highlight">Negocio</span></h1>
             <p class="slide-subtitle">Del prototipo a la máquina productiva</p>
             <div class="card-grid" style="grid-template-columns:1fr 1fr;">
                 <div class="card">
                     <h3 style="color:var(--accent-strong);">🔬 MVP (16 plantas)</h3>
-                    <p style="font-size:0.85rem;"><strong>Coste:</strong> €1.155</p>
+                    <p style="font-size:0.85rem;"><strong>Coste:</strong> &lt;2.000€</p>
                     <p style="font-size:0.8rem;">Estructura, nebulización, LEDs, sensores, electrónica, cámara.</p>
                 </div>
                 <div class="card">
@@ -664,9 +674,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 11: COMPARATIVA DE NEGOCIOS            -->
+    <!-- SLIDE 12: COMPARATIVA DE NEGOCIOS            -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="11">
+    <div class="slide" data-slide="12">
         <div class="slide-content">
             <h1 class="slide-title">¿Dónde está la <span class="highlight">rentabilidad</span>?</h1>
             <p class="slide-subtitle">Comparación con modelos de negocio conocidos</p>
@@ -691,15 +701,15 @@
             <div class="card" style="max-width:700px;border-left:4px solid var(--accent-strong);text-align:center;">
                 <h3 style="color:var(--accent-strong);">🚀 AgroAILab (1 máquina)</h3>
                 <p style="font-size:0.85rem;"><strong>Inversión:</strong> €25.000 | <strong>Ingreso:</strong> €8.000/mes | <strong>Margen neto:</strong> 60%</p>
-                <p style="font-size:0.8rem;">Sin competencia directa, impacto positivo, suscripción recurrente, sin residuos.</p>
+                <p style="font-size:0.8rem;">Impacto positivo, suscripción recurrente, sin residuos.</p>
             </div>
         </div>
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 12: PROYECCIONES FINANCIERAS           -->
+    <!-- SLIDE 13: PROYECCIONES FINANCIERAS           -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="12">
+    <div class="slide" data-slide="13">
         <div class="slide-content">
             <h1 class="slide-title">Proyecciones <span class="highlight">Financieras</span></h1>
             <p class="slide-subtitle">Basado en una máquina de 4.000 plantas (gastos operativos ~40%)</p>
@@ -724,14 +734,14 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- SLIDE 13: CIERRE (3 LÍNEAS)                  -->
+    <!-- SLIDE 14: CIERRE (3 LÍNEAS)                  -->
     <!-- ============================================ -->
-    <div class="slide" data-slide="13">
+    <div class="slide" data-slide="14">
         <div class="slide-content">
             <h1 class="slide-title">El Futuro de la Agricultura es <span class="highlight">Descentralizado</span></h1>
             <div class="card" style="max-width:700px;text-align:center;">
                 <h3 style="color:var(--accent-strong);margin-bottom:10px;">Próximos Pasos</h3>
-                <p style="font-size:0.9rem;">✅ Formalizar convenio UNIOVI<br>✅ Constituir asociación universitaria<br>✅ Fabricar prototipo 4x4<br>✅ Primer nodo piloto (Q4 2026)</p>
+                <p style="font-size:0.9rem;">✅ Formalizar convenio UNIOVI<br>✅ Constituir asociación universitaria<br>✅ Participar de PROGRAMA UNIOVI EMPRENDE<br>✅ Fabricar prototipo 4x4<br>✅ Primer nodo piloto (Q4 2026)</p>
             </div>
             <div class="card" style="max-width:700px;text-align:center;border-left:4px solid var(--gold);background:rgba(184,134,11,0.06);">
                 <p style="font-size:1.05rem;color:var(--gold);font-weight:700;margin-bottom:6px;">¿Cultivamos juntos el futuro?</p>
