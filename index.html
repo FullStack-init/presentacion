@@ -28,42 +28,68 @@
             --neu-elevation-sm: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
             --neu-inset: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
             height: 100%;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .presentation-container {
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             position: relative;
             overflow: hidden;
         }
         .slide {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
             padding: 50px 35px 60px 35px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            opacity: 0; visibility: hidden;
-            z-index: 1; pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+            pointer-events: none;
             transition: opacity 0.5s ease, visibility 0.5s ease;
-            overflow-y: auto; overflow-x: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         .slide.active {
-            opacity: 1; visibility: visible;
-            z-index: 10; pointer-events: auto;
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+            pointer-events: auto;
         }
-        .slide::-webkit-scrollbar { width: 8px; }
-        .slide::-webkit-scrollbar-track { background: transparent; }
-        .slide::-webkit-scrollbar-thumb { background: var(--accent-light); border-radius: 4px; }
-        .slide::-webkit-scrollbar-thumb:hover { background: var(--accent-strong); }
+        .slide::-webkit-scrollbar {
+            width: 6px;
+        }
+        .slide::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .slide::-webkit-scrollbar-thumb {
+            background: var(--accent-light);
+            border-radius: 3px;
+        }
+        .slide::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-strong);
+        }
         .slide-content {
             max-width: 1100px;
             width: 100%;
@@ -71,26 +97,30 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            padding-bottom: 6px;
+            gap: 14px;
+            padding-bottom: 4px;
             margin: auto;
+            min-height: 0;
         }
         .slide-title {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+            font-size: clamp(1.5rem, 3.2vw, 2.6rem);
             font-weight: 800;
             text-align: center;
             color: var(--text);
             line-height: 1.2;
         }
         .slide-subtitle {
-            font-size: 1.05rem;
+            font-size: clamp(0.85rem, 1.6vw, 1.05rem);
             color: var(--muted);
             text-align: center;
             max-width: 700px;
             line-height: 1.5;
         }
-        .highlight { color: var(--accent-strong); font-weight: 700; }
+        .highlight {
+            color: var(--accent-strong);
+            font-weight: 700;
+        }
         .card {
             background: var(--card);
             border-radius: var(--radius-lg);
@@ -98,37 +128,49 @@
             box-shadow: var(--neu-elevation);
             transition: transform 0.3s ease;
             width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
-        .card:hover { transform: translateY(-3px); }
+        .card:hover {
+            transform: translateY(-3px);
+        }
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 16px;
             width: 100%;
         }
         .card-icon {
-            width: 50px; height: 50px;
+            width: 50px;
+            height: 50px;
             border-radius: var(--radius);
             margin: 0 auto 10px;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.5rem;
             background: var(--bg);
             box-shadow: var(--neu-inset);
+            flex-shrink: 0;
         }
         .card h3 {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.05rem;
+            font-size: clamp(0.9rem, 1.4vw, 1.05rem);
             margin-bottom: 6px;
             color: var(--text);
             text-align: center;
         }
-        .card p, .card li {
+        .card p,
+        .card li {
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 1.1vw, 0.85rem);
             line-height: 1.45;
             text-align: center;
         }
-        .card ul { list-style: none; padding: 0; }
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
         .card li {
             margin-bottom: 4px;
             padding-left: 16px;
@@ -150,28 +192,57 @@
             overflow: hidden;
             margin: 0 auto;
         }
-        .slide-image img { width: 100%; height: auto; display: block; }
+        .slide-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
         .image-placeholder {
-            width: 100%; height: 200px;
+            width: 100%;
+            height: 200px;
             background: var(--bg);
             box-shadow: var(--neu-inset);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--muted); font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.85rem;
             border-radius: var(--radius-lg);
+            text-align: center;
+            padding: 10px;
+        }
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: var(--radius);
+            box-shadow: var(--neu-elevation);
+            margin: 8px 0;
+        }
+        .table-wrapper::-webkit-scrollbar {
+            height: 5px;
+        }
+        .table-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: var(--accent-light);
+            border-radius: 3px;
         }
         .comparison-table {
             width: 100%;
+            min-width: 600px;
             border-collapse: collapse;
-            margin: 8px 0;
-            box-shadow: var(--neu-elevation);
+            font-size: clamp(0.7rem, 1vw, 0.8rem);
             border-radius: var(--radius);
             overflow: hidden;
-            font-size: 0.8rem;
         }
-        .comparison-table th, .comparison-table td {
+        .comparison-table th,
+        .comparison-table td {
             padding: 10px 8px;
             text-align: center;
-            border: 1px solid rgba(139,150,140,0.1);
+            border: 1px solid rgba(139, 150, 140, 0.1);
+            white-space: nowrap;
         }
         .comparison-table th {
             background: var(--accent-bg);
@@ -179,13 +250,18 @@
             font-weight: 700;
             font-family: 'Outfit', sans-serif;
         }
-        .comparison-table tr:nth-child(even) { background: var(--surface); }
-        .comparison-table tr.highlight-row { background: var(--accent-bg) !important; font-weight: 700; }
+        .comparison-table tr:nth-child(even) {
+            background: var(--surface);
+        }
+        .comparison-table tr.highlight-row {
+            background: var(--accent-bg) !important;
+            font-weight: 700;
+        }
         .neu-pill {
             display: inline-block;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 9999px;
-            font-size: 0.7rem;
+            font-size: clamp(0.6rem, 0.9vw, 0.7rem);
             font-weight: 700;
             letter-spacing: 0.05em;
             text-transform: uppercase;
@@ -193,6 +269,11 @@
             color: var(--accent-strong);
             box-shadow: var(--neu-elevation-sm);
             margin: 3px;
+            white-space: nowrap;
+        }
+        .neu-pill-large {
+            font-size: clamp(0.8rem, 1.3vw, 0.95rem) !important;
+            padding: 10px 24px !important;
         }
         .nav-buttons {
             position: fixed;
@@ -203,7 +284,8 @@
             z-index: 1000;
         }
         .nav-btn {
-            width: 44px; height: 44px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: none;
             background: var(--bg);
@@ -212,10 +294,22 @@
             cursor: pointer;
             box-shadow: var(--neu-elevation);
             transition: all 0.3s ease;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
         }
-        .nav-btn:hover { box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light); transform: translateY(-2px); }
-        .nav-btn:active { box-shadow: var(--neu-inset); transform: translateY(1px); }
+        .nav-btn:hover {
+            box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+            transform: translateY(-2px);
+        }
+        .nav-btn:active {
+            box-shadow: var(--neu-inset);
+            transform: translateY(1px);
+        }
         .slide-indicators {
             position: fixed;
             bottom: 20px;
@@ -229,12 +323,15 @@
             max-width: 60%;
         }
         .indicator {
-            width: 7px; height: 7px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background: var(--bg);
             box-shadow: var(--neu-elevation-sm);
             cursor: pointer;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         .indicator.active {
             background: var(--accent-strong);
@@ -245,6 +342,7 @@
             position: fixed;
             z-index: 1000;
             transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
         }
         .logo-container.centered {
             top: 28%;
@@ -263,9 +361,11 @@
         }
         .logo-big {
             height: 260px;
+            width: auto;
         }
         .logo-small {
             height: 36px;
+            width: auto;
         }
         .slide-number {
             position: fixed;
@@ -278,10 +378,11 @@
             background: transparent;
             padding: 2px 8px;
             border-radius: 9999px;
+            pointer-events: none;
         }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 14px;
             width: 100%;
             margin: 6px 0;
@@ -292,36 +393,61 @@
             border-radius: var(--radius);
             box-shadow: var(--neu-inset);
             text-align: center;
+            word-wrap: break-word;
         }
         .stat-number {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.7rem;
+            font-size: clamp(1.3rem, 2vw, 1.7rem);
             font-weight: 800;
             color: var(--accent-strong);
             display: block;
             margin-bottom: 3px;
         }
         .stat-label {
-            font-size: 0.75rem;
+            font-size: clamp(0.65rem, 0.9vw, 0.75rem);
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 0.04em;
             line-height: 1.2;
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .slide.active .slide-content > * {
+        .slide.active .slide-content>* {
             animation: fadeInUp 0.5s ease forwards;
             opacity: 0;
         }
-        .slide.active .slide-content > *:nth-child(1) { animation-delay: 0.04s; }
-        .slide.active .slide-content > *:nth-child(2) { animation-delay: 0.10s; }
-        .slide.active .slide-content > *:nth-child(3) { animation-delay: 0.16s; }
-        .slide.active .slide-content > *:nth-child(4) { animation-delay: 0.22s; }
-        .slide.active .slide-content > *:nth-child(5) { animation-delay: 0.28s; }
-        .slide.active .slide-content > *:nth-child(6) { animation-delay: 0.34s; }
+        .slide.active .slide-content>*:nth-child(1) {
+            animation-delay: 0.04s;
+        }
+        .slide.active .slide-content>*:nth-child(2) {
+            animation-delay: 0.10s;
+        }
+        .slide.active .slide-content>*:nth-child(3) {
+            animation-delay: 0.16s;
+        }
+        .slide.active .slide-content>*:nth-child(4) {
+            animation-delay: 0.22s;
+        }
+        .slide.active .slide-content>*:nth-child(5) {
+            animation-delay: 0.28s;
+        }
+        .slide.active .slide-content>*:nth-child(6) {
+            animation-delay: 0.34s;
+        }
+        .slide.active .slide-content>*:nth-child(7) {
+            animation-delay: 0.40s;
+        }
+        .slide.active .slide-content>*:nth-child(8) {
+            animation-delay: 0.46s;
+        }
         .team-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -334,487 +460,975 @@
             text-align: center;
         }
         .team-grid .card-icon {
-            width: 38px; height: 38px;
+            width: 38px;
+            height: 38px;
             font-size: 1.1rem;
             margin-bottom: 6px;
         }
         .team-grid h3 {
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 1vw, 0.8rem);
             margin-bottom: 2px;
         }
         .team-grid p {
-            font-size: 0.65rem;
+            font-size: clamp(0.55rem, 0.75vw, 0.65rem);
             margin-bottom: 1px;
             line-height: 1.3;
         }
-        @media (max-width: 768px) {
-            .slide { padding: 45px 16px 55px 16px; }
-            .card-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .nav-buttons { bottom: 10px; right: 10px; }
-            .slide-number { right: 10px; top: 14px; }
-            .slide-indicators { max-width: 70%; bottom: 10px; }
-            .logo-container.corner { left: 10px; top: 10px; }
-            .logo-big { height: 160px; }
+        .border-left-accent {
+            border-left: 4px solid var(--accent-strong);
         }
-        @media (max-width: 480px) {
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .logo-big { height: 120px; }
+        .border-left-blue {
+            border-left: 4px solid var(--accent2);
+        }
+        .border-top-green {
+            border-top: 4px solid #10b981;
+        }
+        .border-top-amber {
+            border-top: 4px solid #f59e0b;
+        }
+        .border-top-blue {
+            border-top: 4px solid #3b82f6;
+        }
+        .border-top-red {
+            border-top: 4px solid #ef4444;
+        }
+        .text-green {
+            color: #10b981;
+        }
+        .text-amber {
+            color: #f59e0b;
+        }
+        .text-blue {
+            color: #3b82f6;
+        }
+        .text-red {
+            color: #ef4444;
+        }
+        .accent-bg-card {
+            background: var(--accent-bg);
+        }
+
+        /* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+        /* Tablet grande y pantallas medianas (hasta 1024px) */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 45px 24px 55px 24px;
+            }
+            .card-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 12px;
+            }
+            .team-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .logo-big {
+                height: 200px;
+            }
+            .logo-container.centered {
+                top: 26%;
+            }
+            .comparison-table {
+                min-width: 500px;
+            }
+            .slide-content {
+                gap: 12px;
+            }
+        }
+
+        /* Tablet (hasta 768px) */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 16px 50px 16px;
+            }
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .card-grid.single-col-tablet {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                max-width: 100%;
+            }
+            .nav-buttons {
+                bottom: 10px;
+                right: 10px;
+                gap: 8px;
+            }
+            .nav-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 0.85rem;
+            }
+            .slide-number {
+                right: 10px;
+                top: 12px;
+                font-size: 0.65rem;
+            }
+            .slide-indicators {
+                max-width: 65%;
+                bottom: 10px;
+                gap: 4px;
+            }
+            .indicator {
+                width: 6px;
+                height: 6px;
+            }
+            .indicator.active {
+                width: 16px;
+            }
+            .logo-container.corner {
+                left: 10px;
+                top: 8px;
+            }
+            .logo-big {
+                height: 160px;
+            }
+            .logo-small {
+                height: 30px;
+            }
+            .logo-container.centered {
+                top: 24%;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            .stat-card {
+                padding: 12px 8px;
+            }
+            .slide-image {
+                max-width: 100%;
+            }
+            .image-placeholder {
+                height: 160px;
+                font-size: 0.75rem;
+            }
+            .comparison-table {
+                min-width: 450px;
+                font-size: 0.68rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 7px 5px;
+            }
+            .card {
+                padding: 14px;
+            }
+            .card-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+            .slide-content {
+                gap: 10px;
+            }
+            .neu-pill {
+                padding: 4px 10px;
+                font-size: 0.6rem;
+            }
+            .neu-pill-large {
+                padding: 8px 18px !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        /* Móvil grande (hasta 576px) */
+        @media (max-width: 576px) {
+            .slide {
+                padding: 35px 10px 45px 10px;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+            .team-grid .card {
+                padding: 10px 6px;
+            }
+            .team-grid .card-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+            }
+            .team-grid h3 {
+                font-size: 0.7rem;
+            }
+            .team-grid p {
+                font-size: 0.55rem;
+            }
+            .logo-big {
+                height: 110px;
+            }
+            .logo-small {
+                height: 26px;
+            }
+            .logo-container.centered {
+                top: 22%;
+            }
+            .logo-container.corner {
+                left: 6px;
+                top: 6px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .stat-card {
+                padding: 10px 6px;
+            }
+            .stat-number {
+                font-size: 1.1rem;
+            }
+            .stat-label {
+                font-size: 0.6rem;
+            }
+            .image-placeholder {
+                height: 130px;
+                font-size: 0.7rem;
+            }
+            .comparison-table {
+                min-width: 380px;
+                font-size: 0.62rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 5px 4px;
+            }
+            .nav-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.75rem;
+            }
+            .nav-buttons {
+                bottom: 8px;
+                right: 6px;
+                gap: 6px;
+            }
+            .slide-indicators {
+                max-width: 55%;
+                bottom: 8px;
+                gap: 3px;
+            }
+            .indicator {
+                width: 5px;
+                height: 5px;
+            }
+            .indicator.active {
+                width: 14px;
+            }
+            .slide-number {
+                right: 6px;
+                top: 8px;
+                font-size: 0.6rem;
+            }
+            .card {
+                padding: 12px;
+                border-radius: var(--radius);
+            }
+            .card-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+                margin-bottom: 6px;
+            }
+            .slide-content {
+                gap: 8px;
+            }
+            .slide-title {
+                font-size: clamp(1.2rem, 5vw, 1.5rem);
+            }
+            .slide-subtitle {
+                font-size: clamp(0.7rem, 3vw, 0.85rem);
+            }
+            .neu-pill {
+                padding: 3px 8px;
+                font-size: 0.55rem;
+                margin: 2px;
+            }
+            .neu-pill-large {
+                padding: 6px 14px !important;
+                font-size: 0.65rem !important;
+            }
+            .card p,
+            .card li {
+                font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+            }
+            .card h3 {
+                font-size: clamp(0.75rem, 3vw, 0.9rem);
+            }
+        }
+
+        /* Móvil pequeño (hasta 380px) */
+        @media (max-width: 380px) {
+            .slide {
+                padding: 30px 6px 40px 6px;
+            }
+            .team-grid {
+                gap: 4px;
+            }
+            .team-grid .card {
+                padding: 8px 4px;
+            }
+            .team-grid .card-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+            .team-grid h3 {
+                font-size: 0.65rem;
+            }
+            .team-grid p {
+                font-size: 0.5rem;
+            }
+            .logo-big {
+                height: 90px;
+            }
+            .logo-small {
+                height: 22px;
+            }
+            .logo-container.centered {
+                top: 20%;
+            }
+            .logo-container.corner {
+                left: 4px;
+                top: 4px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+            .stat-card {
+                padding: 8px 4px;
+            }
+            .stat-number {
+                font-size: 0.95rem;
+            }
+            .stat-label {
+                font-size: 0.55rem;
+            }
+            .comparison-table {
+                min-width: 340px;
+                font-size: 0.55rem;
+            }
+            .nav-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+            }
+            .nav-buttons {
+                bottom: 6px;
+                right: 4px;
+                gap: 4px;
+            }
+            .slide-indicators {
+                max-width: 50%;
+                bottom: 6px;
+            }
+            .card {
+                padding: 10px;
+            }
+            .card-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+            .slide-content {
+                gap: 6px;
+            }
+        }
+
+        /* Pantallas muy grandes (más de 1400px) */
+        @media (min-width: 1400px) {
+            .slide-content {
+                max-width: 1200px;
+            }
+            .logo-big {
+                height: 300px;
+            }
+            .card-grid {
+                gap: 20px;
+            }
+            .slide {
+                padding: 60px 50px 70px 50px;
+            }
+        }
+
+        /* Ajuste para orientación landscape en móviles */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .slide {
+                padding: 25px 14px 40px 14px;
+            }
+            .logo-big {
+                height: 100px;
+            }
+            .logo-container.centered {
+                top: 30%;
+            }
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .slide-content {
+                gap: 6px;
+            }
+            .image-placeholder {
+                height: 100px;
+            }
+            .team-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 4px;
+            }
+        }
+
+        /* Soporte para dispositivos con notch */
+        @supports (padding: env(safe-area-inset-top)) {
+            .slide {
+                padding-top: calc(40px + env(safe-area-inset-top));
+                padding-bottom: calc(50px + env(safe-area-inset-bottom));
+            }
+            .logo-container.corner {
+                top: calc(8px + env(safe-area-inset-top));
+                left: calc(10px + env(safe-area-inset-left));
+            }
+            .nav-buttons {
+                bottom: calc(10px + env(safe-area-inset-bottom));
+                right: calc(10px + env(safe-area-inset-right));
+            }
+            .slide-indicators {
+                bottom: calc(10px + env(safe-area-inset-bottom));
+            }
+            @media (max-width: 576px) {
+                .logo-container.corner {
+                    top: calc(6px + env(safe-area-inset-top));
+                    left: calc(6px + env(safe-area-inset-left));
+                }
+                .nav-buttons {
+                    bottom: calc(8px + env(safe-area-inset-bottom));
+                    right: calc(6px + env(safe-area-inset-right));
+                }
+            }
         }
     </style>
 </head>
 <body>
-<div class="presentation-container">
+    <div class="presentation-container">
 
-    <!-- Logo (animado: centrado grande en slide 1, esquina pequeño en demás) -->
-    <div class="logo-container centered" id="logoContainer">
-        <img src="logo.png" alt="AgroAILab" class="logo-img logo-big" id="mainLogo" onerror="this.style.display='none'">
-    </div>
-
-    <div class="slide-number" id="slideNumber"></div>
-
-    <!-- ============================================ -->
-    <!-- SLIDE 1: PORTADA LIMPIA (LOGO GRANDE + TEXTO)-->
-    <!-- ============================================ -->
-    <div class="slide active" data-slide="1">
-        <div class="slide-content" style="padding-top: 340px;">
-            <div class="neu-pill" style="font-size: 0.95rem; padding: 10px 28px;">Cultivo Evolutivo Descentralizado</div>
+        <!-- Logo (animado: centrado grande en slide 1, esquina pequeño en demás) -->
+        <div class="logo-container centered" id="logoContainer">
+            <img src="logo.png" alt="AgroAILab" class="logo-img logo-big" id="mainLogo" onerror="this.style.display='none'">
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 2: PORTADA CON IMAGEN DE ALTO IMPACTO  -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="2">
-        <div class="slide-content">
-            <div class="neu-pill">Cultivo Evolutivo Descentralizado</div>
-            <p class="slide-subtitle" style="font-size:1.15rem;">Micro-fábricas autónomas que cultivan por vos. Kilómetro cero, cero desperdicio.</p>
-            <div class="slide-image" style="max-width:480px;">
-                <img src="foto1.png" alt="AgroAILab" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot; style=&quot;height:220px;&quot;><i class=&quot;fas fa-seedling&quot; style=&quot;font-size:2.5rem;margin-right:8px;&quot;></i>Imagen de Alto Impacto (foto1.png)</div>'">
+        <div class="slide-number" id="slideNumber"></div>
+
+        <!-- ============================================ -->
+        <!-- SLIDE 1: PORTADA LIMPIA (LOGO GRANDE + TEXTO)-->
+        <!-- ============================================ -->
+        <div class="slide active" data-slide="1">
+            <div class="slide-content" style="padding-top: 340px;">
+                <div class="neu-pill neu-pill-large">Cultivo Evolutivo Descentralizado</div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 3: PROBLEMA + SOLUCIÓN (UNIFICADO)     -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="3">
-        <div class="slide-content">
-            <h1 class="slide-title">Del <span class="highlight">Problema</span> a la <span class="highlight">Revolución</span></h1>
-            <p class="slide-subtitle">La agricultura actual no es sostenible. Nosotros la cambiamos.</p>
-            <div class="stats-grid">
-                <div class="stat-card"><span class="stat-number">80%</span><span class="stat-label">Agua dulce para agricultura<br>con &lt;50% eficiencia</span></div>
-                <div class="stat-card"><span class="stat-number">40%</span><span class="stat-label">Desperdicio en fruta/verdura<br>por cosecha a ciegas</span></div>
-                <div class="stat-card"><span class="stat-number">4.000</span><span class="stat-label">Km promedio que recorre<br>un alimento</span></div>
-            </div>
-            <div class="card" style="max-width:700px;">
-                <p><strong>El Colapso del Modelo Centralizado:</strong> Quiebras globales de macro-factorías verticales. Centralizar la producción en naves masivas genera un CAPEX insostenible.</p>
-            </div>
-            <table class="comparison-table">
-                <thead><tr><th>Problema Tradicional</th><th>Disrupción AgroAILab</th><th>Impacto Real</th></tr></thead>
-                <tbody>
-                    <tr><td>Emergencia Hídrica</td><td>Aeroponía circuito cerrado</td><td><strong>95% menos agua</strong></td></tr>
-                    <tr><td>Gigantismo Industrial</td><td>Red Descentralizada</td><td><strong>CAPEX 70% menor</strong></td></tr>
-                    <tr><td>Logística Ineficiente</td><td>Micro-nodos urbanos</td><td><strong>0 km transporte</strong></td></tr>
-                    <tr><td>Cosecha a Ciegas</td><td>Planta viva bajo demanda</td><td><strong>0% desperdicio</strong></td></tr>
-                    <tr><td>Producto Genérico</td><td>Diseño Organoléptico por IA</td><td><strong>Verdura a la Carta</strong></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- SLIDE 4: TECNOLOGÍA + AGRICULTURA            -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="4">
-        <div class="slide-content">
-            <h1 class="slide-title">Hardware + Software + <span class="highlight">Agricultura</span></h1>
-            <p class="slide-subtitle">Un ecosistema integrado que automatiza el cultivo de principio a fin</p>
-            <div class="card-grid">
-                <div class="card"><div class="card-icon">🌱</div><h3>Aeroponía de Alta presión</h3><ul><li>Raíces en niebla nutritiva</li><li>Sin sustrato, sin tierra</li><li>Circuito cerrado de nutrientes</li></ul></div>
-                <div class="card"><div class="card-icon">🤖</div><h3>Inteligencia Artificial</h3><ul><li>Visión artificial 24/7</li><li>Optimización espectral</li><li>Predicción exacta de cosecha</li></ul></div>
-                <div class="card"><div class="card-icon">📱</div><h3>Huerta Online (App)</h3><ul><li>Suscripción tarifa plana</li><li>Diseño de perfil organoléptico</li><li>Cosecha programada</li></ul></div>
-            </div>
-            <div class="slide-image" style="max-width: 60%;">
-                <img src="foto2.png" alt="Dashboard" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;><i class=&quot;fas fa-chart-line&quot; style=&quot;font-size:2.2rem;margin-right:6px;&quot;></i>Dashboard Interactivo (foto2.png)</div>'">
-            </div>
-            <div class="card" style="max-width:100%; text-align:center; padding: 15px 20px;">
-                <p style="font-size:0.9rem; margin:0;">AgroAILab combina <strong>aeroponía de alta presión</strong> con <strong>robótica autónoma</strong> e <strong>inteligencia artificial</strong> para crear la primera red descentralizada de micro-fábricas agrícolas. Cada terminal opera 24/7 sin intervención humana, aprende de cada cultivo y comparte conocimiento con toda la red.</p>
+        <!-- ============================================ -->
+        <!-- SLIDE 2: PORTADA CON IMAGEN DE ALTO IMPACTO  -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <div class="neu-pill neu-pill-large">Cultivo Evolutivo Descentralizado</div>
+                <p class="slide-subtitle" style="font-size:clamp(1rem,1.6vw,1.15rem);">Micro-fábricas autónomas que cultivan por vos. Kilómetro cero, cero desperdicio.</p>
+                <div class="slide-image" style="max-width:480px;">
+                    <img src="foto1.png" alt="AgroAILab" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot; style=&quot;height:220px;&quot;><i class=&quot;fas fa-seedling&quot; style=&quot;font-size:2.5rem;margin-right:8px;&quot;></i>Imagen de Alto Impacto (foto1.png)</div>'">
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 5: PROTOTIPO MVP (RESUMIDO)            -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="5">
-        <div class="slide-content">
-            <h1 class="slide-title">Prototipo <span class="highlight">MVP</span></h1>
-            <p class="slide-subtitle">Lo que estamos construyendo ahora</p>
-            <div class="card-grid" style="grid-template-columns:1fr 1fr;">
-                <div class="card">
-                    <h3 style="color:var(--accent-strong);">🔄 Avances</h3>
-                    <ul style="text-align:left;font-size:0.85rem;">
-                        <li>Pruebas de viabilidad con fresas y tomates</li>
-                        <li>Validación de crecimiento en entorno controlado</li>
-                        <li>Diseño conceptual completo</li>
-                        <li>Equipo consolidado</li>
-                    </ul>
+        <!-- ============================================ -->
+        <!-- SLIDE 3: PROBLEMA + SOLUCIÓN (UNIFICADO)     -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="3">
+            <div class="slide-content">
+                <h1 class="slide-title">Del <span class="highlight">Problema</span> a la <span class="highlight">Revolución</span></h1>
+                <p class="slide-subtitle">La agricultura actual no es sostenible. Nosotros la cambiamos.</p>
+                <div class="stats-grid">
+                    <div class="stat-card"><span class="stat-number">80%</span><span class="stat-label">Agua dulce para agricultura<br>con &lt;50% eficiencia</span></div>
+                    <div class="stat-card"><span class="stat-number">40%</span><span class="stat-label">Desperdicio en fruta/verdura<br>por cosecha a ciegas</span></div>
+                    <div class="stat-card"><span class="stat-number">4.000</span><span class="stat-label">Km promedio que recorre<br>un alimento</span></div>
                 </div>
-                <div class="card">
-                    <h3 style="color:var(--gold);">🎯 Próximo Hito (Q3-Q4 2026)</h3>
-                    <ul style="text-align:left;font-size:0.85rem;">
-                        <li>MVP funcional cerrado</li>
-                        <li>Validación biológica</li>
-                        <li>Convenio UNIOVI</li>
-                        <li>Asociación universitaria</li>
-                    </ul>
+                <div class="card" style="max-width:700px;">
+                    <p><strong>El Colapso del Modelo Centralizado:</strong> Quiebras globales de macro-factorías verticales. Centralizar la producción en naves masivas genera un CAPEX insostenible.</p>
                 </div>
-            </div>
-            <div class="slide-image" style="max-width:450px;">
-                <img src="foto3.png" alt="Prototipo" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot; style=&quot;height:200px;&quot;><i class=&quot;fas fa-cube&quot; style=&quot;font-size:2.5rem;margin-right:8px;&quot;></i>Prototipo 4x4 (foto3.png)</div>'">
+                <div class="table-wrapper">
+                    <table class="comparison-table">
+                        <thead><tr><th>Problema Tradicional</th><th>Disrupción AgroAILab</th><th>Impacto Real</th></tr></thead>
+                        <tbody>
+                            <tr><td>Emergencia Hídrica</td><td>Aeroponía circuito cerrado</td><td><strong>95% menos agua</strong></td></tr>
+                            <tr><td>Gigantismo Industrial</td><td>Red Descentralizada</td><td><strong>CAPEX 70% menor</strong></td></tr>
+                            <tr><td>Logística Ineficiente</td><td>Micro-nodos urbanos</td><td><strong>0 km transporte</strong></td></tr>
+                            <tr><td>Cosecha a Ciegas</td><td>Planta viva bajo demanda</td><td><strong>0% desperdicio</strong></td></tr>
+                            <tr><td>Producto Genérico</td><td>Diseño Organoléptico por IA</td><td><strong>Verdura a la Carta</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 6: MODELO DE NEGOCIO + DATOS           -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="6">
-        <div class="slide-content">
-            <h1 class="slide-title">Triple Flujo de <span class="highlight">Ingresos</span></h1>
-            <div class="card-grid">
-                <div class="card"><div class="card-icon">💰</div><h3>Suscripción B2C</h3><ul style="text-align:left;"><li>Básico: <strong>€10/mes</strong></li><li>Estándar: <strong>€20/mes</strong></li><li>Premium: <strong>€30/mes</strong></li><li>Entrega hiperlocal</li></ul></div>
-                <div class="card"><div class="card-icon">🏢</div><h3>HORECA + Institucional</h3><ul style="text-align:left;"><li><strong>€2/planta</strong></li><li>Colegios, hospitales</li><li>Restaurantes premium</li><li>Contrato anual</li></ul></div>
-                <div class="card"><div class="card-icon">💻</div><h3>SaaS + HaaS</h3><ul style="text-align:left;"><li>Licencia: <strong>€150/mes</strong></li><li>Módulos: <strong>€15-20k</strong></li><li>Fase 2 de expansión</li></ul></div>
-            </div>
-            <div class="card" style="max-width:700px;border-left:4px solid var(--accent2);">
-                <h3 style="color:var(--accent2);">🧬 Capa de Datos (Transversal)</h3>
-                <p style="font-size:0.85rem;text-align:left;">Cada cultivo genera datos que alimentan la IA. <strong>Cuantos más usuarios, más inteligente el sistema.</strong> Esto optimiza cultivos, maximiza ganancias y mejora la app de huerta virtual. <span class="highlight">Un ecosistema que se retroalimenta.</span></p>
-            </div>
-            <div class="stats-grid" style="margin-top:4px;">
-                <div class="stat-card"><span class="stat-number">€15-20k</span><span class="stat-label">Inversión por local</span></div>
-                <div class="stat-card"><span class="stat-number">€4-6k</span><span class="stat-label">Ingreso máx./mes</span></div>
-                <div class="stat-card"><span class="stat-number">6-8</span><span class="stat-label">Meses break-even</span></div>
+        <!-- ============================================ -->
+        <!-- SLIDE 4: TECNOLOGÍA + AGRICULTURA            -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="4">
+            <div class="slide-content">
+                <h1 class="slide-title">Hardware + Software + <span class="highlight">Agricultura</span></h1>
+                <p class="slide-subtitle">Un ecosistema integrado que automatiza el cultivo de principio a fin</p>
+                <div class="card-grid">
+                    <div class="card"><div class="card-icon">🌱</div><h3>Aeroponía de Alta presión</h3><ul><li>Raíces en niebla nutritiva</li><li>Sin sustrato, sin tierra</li><li>Circuito cerrado de nutrientes</li></ul></div>
+                    <div class="card"><div class="card-icon">🤖</div><h3>Inteligencia Artificial</h3><ul><li>Visión artificial 24/7</li><li>Optimización espectral</li><li>Predicción exacta de cosecha</li></ul></div>
+                    <div class="card"><div class="card-icon">📱</div><h3>Huerta Online (App)</h3><ul><li>Suscripción tarifa plana</li><li>Diseño de perfil organoléptico</li><li>Cosecha programada</li></ul></div>
+                </div>
+                <div class="slide-image" style="max-width: 60%;">
+                    <img src="foto2.png" alt="Dashboard" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;><i class=&quot;fas fa-chart-line&quot; style=&quot;font-size:2.2rem;margin-right:6px;&quot;></i>Dashboard Interactivo (foto2.png)</div>'">
+                </div>
+                <div class="card" style="max-width:100%; text-align:center; padding: 15px 20px;">
+                    <p style="font-size:clamp(0.75rem,1.1vw,0.9rem); margin:0;">AgroAILab combina <strong>aeroponía de alta presión</strong> con <strong>robótica autónoma</strong> e <strong>inteligencia artificial</strong> para crear la primera red descentralizada de micro-fábricas agrícolas. Cada terminal opera 24/7 sin intervención humana, aprende de cada cultivo y comparte conocimiento con toda la red.</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 7: MERCADO OBJETIVO                    -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="7">
-        <div class="slide-content">
-            <h1 class="slide-title">Del Micro-Nodo al <span class="highlight">Consumidor Urbano</span></h1>
-            <div class="card-grid">
-                <div class="card"><div class="card-icon">👥</div><h3>Eco-Consumidores</h3><p><strong>25-45 años</strong></p><ul style="text-align:left;margin-top:6px;"><li>Foodies, sostenibilidad</li><li>+20-30% por calidad</li></ul></div>
-                <div class="card"><div class="card-icon">🍽️</div><h3>Canal HORECA</h3><p><strong>Restaurantes km0</strong></p><ul style="text-align:left;margin-top:6px;"><li>Hoteles boutique</li><li>Diferenciación</li></ul></div>
-                <div class="card"><div class="card-icon">🏫</div><h3>Sector Público</h3><p><strong>Calidad nutricional</strong></p><ul style="text-align:left;margin-top:6px;"><li>Comedores escolares</li><li>Hospitales</li></ul></div>
-            </div>
-            <div class="card" style="max-width:700px;text-align:center;">
-                <h3 style="color:var(--accent-strong);margin-bottom:6px;">Estrategia</h3>
-                <p style="font-size:0.85rem;"><strong>Fase 1:</strong> Asturias · <strong>Fase 2:</strong> Madrid/Barcelona · <strong>Fase 3:</strong> Franquicia de nodos</p>
+        <!-- ============================================ -->
+        <!-- SLIDE 5: PROTOTIPO MVP (RESUMIDO)            -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="5">
+            <div class="slide-content">
+                <h1 class="slide-title">Prototipo <span class="highlight">MVP</span></h1>
+                <p class="slide-subtitle">Lo que estamos construyendo ahora</p>
+                <div class="card-grid" style="grid-template-columns:1fr 1fr;">
+                    <div class="card">
+                        <h3 style="color:var(--accent-strong);">🔄 Avances</h3>
+                        <ul style="text-align:left;font-size:clamp(0.7rem,1vw,0.85rem);">
+                            <li>Pruebas de viabilidad con fresas y tomates</li>
+                            <li>Validación de crecimiento en entorno controlado</li>
+                            <li>Diseño conceptual completo</li>
+                            <li>Equipo consolidado</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 style="color:var(--gold);">🎯 Próximo Hito (Q3-Q4 2026)</h3>
+                        <ul style="text-align:left;font-size:clamp(0.7rem,1vw,0.85rem);">
+                            <li>MVP funcional cerrado</li>
+                            <li>Validación biológica</li>
+                            <li>Convenio UNIOVI</li>
+                            <li>Asociación universitaria</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide-image" style="max-width:450px;">
+                    <img src="foto3.png" alt="Prototipo" onerror="this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot; style=&quot;height:200px;&quot;><i class=&quot;fas fa-cube&quot; style=&quot;font-size:2.5rem;margin-right:8px;&quot;></i>Prototipo 4x4 (foto3.png)</div>'">
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 8: COMPETENCIA                         -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="8">
-        <div class="slide-content">
-            <h1 class="slide-title">Posicionamiento <span class="highlight">Único</span></h1>
-            <table class="comparison-table">
-                <thead><tr><th>Competidor</th><th>Precio</th><th>Calidad</th><th>Autom.</th><th>Sostenib.</th><th>Pesticidas</th><th>Desperdicio</th></tr></thead>
-                <tbody>
-                    <tr><td>Supermercados</td><td>€€</td><td>⭐⭐</td><td>❌</td><td>⚠️</td><td>⚠️ Sí</td><td>⚠️ Alto</td></tr>
-                    <tr><td>Importación</td><td>€</td><td>⭐</td><td>❌</td><td>❌</td><td>⚠️ Sí</td><td>⚠️ Alto</td></tr>
-                    <tr><td>Productores Locales</td><td>€€€</td><td>⭐⭐⭐⭐</td><td>❌</td><td>✅</td><td>✅ No</td><td>✅ Bajo</td></tr>
-                    <tr class="highlight-row"><td style="color:var(--accent-strong);">AGROAILAB</td><td style="color:var(--accent-strong);">€€</td><td style="color:var(--accent-strong);">⭐⭐⭐⭐⭐</td><td style="color:var(--accent-strong);">✅ IA</td><td style="color:var(--accent-strong);">✅ 95% agua</td><td style="color:var(--accent-strong);">✅ Nunca</td><td style="color:var(--accent-strong);">✅ Cero</td></tr>
-                </tbody>
-            </table>
-            <div class="card" style="max-width:700px;text-align:center;">
-                <p style="font-size:0.85rem;"><strong>Ventaja Clave:</strong> <span class="highlight">Personalización IA + Cero pesticidas + Cero desperdicio + Suscripción ilimitada</span></p>
+        <!-- ============================================ -->
+        <!-- SLIDE 6: MODELO DE NEGOCIO + DATOS           -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="6">
+            <div class="slide-content">
+                <h1 class="slide-title">Triple Flujo de <span class="highlight">Ingresos</span></h1>
+                <div class="card-grid">
+                    <div class="card"><div class="card-icon">💰</div><h3>Suscripción B2C</h3><ul style="text-align:left;"><li>Básico: <strong>€10/mes</strong></li><li>Estándar: <strong>€20/mes</strong></li><li>Premium: <strong>€30/mes</strong></li><li>Entrega hiperlocal</li></ul></div>
+                    <div class="card"><div class="card-icon">🏢</div><h3>HORECA + Institucional</h3><ul style="text-align:left;"><li><strong>€2/planta</strong></li><li>Colegios, hospitales</li><li>Restaurantes premium</li><li>Contrato anual</li></ul></div>
+                    <div class="card"><div class="card-icon">💻</div><h3>SaaS + HaaS</h3><ul style="text-align:left;"><li>Licencia: <strong>€150/mes</strong></li><li>Módulos: <strong>€15-20k</strong></li><li>Fase 2 de expansión</li></ul></div>
+                </div>
+                <div class="card border-left-blue" style="max-width:700px;">
+                    <h3 style="color:var(--accent2);">🧬 Capa de Datos (Transversal)</h3>
+                    <p style="font-size:clamp(0.7rem,1vw,0.85rem);text-align:left;">Cada cultivo genera datos que alimentan la IA. <strong>Cuantos más usuarios, más inteligente el sistema.</strong> Esto optimiza cultivos, maximiza ganancias y mejora la app de huerta virtual. <span class="highlight">Un ecosistema que se retroalimenta.</span></p>
+                </div>
+                <div class="stats-grid" style="margin-top:4px;">
+                    <div class="stat-card"><span class="stat-number">€15-20k</span><span class="stat-label">Inversión por local</span></div>
+                    <div class="stat-card"><span class="stat-number">€4-6k</span><span class="stat-label">Ingreso máx./mes</span></div>
+                    <div class="stat-card"><span class="stat-number">6-8</span><span class="stat-label">Meses break-even</span></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 9: DAFO                               -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="9">
-        <div class="slide-content">
-            <h1 class="slide-title">Análisis <span class="highlight">DAFO</span></h1>
-            <div class="card-grid" style="grid-template-columns:repeat(2,1fr);">
-                <div class="card" style="border-top:4px solid #10b981;"><h3 style="color:#10b981;">FORTALEZAS</h3><ul style="text-align:left;font-size:0.82rem;"><li>✅ Sinergia técnica del equipo</li><li>✅ Conocimiento del mercado</li><li>✅ Modelo Asset-Light</li><li>✅ Respaldo universitario</li></ul></div>
-                <div class="card" style="border-top:4px solid #f59e0b;"><h3 style="color:#f59e0b;">DEBILIDADES</h3><ul style="text-align:left;font-size:0.82rem;"><li>⚠️ Equipo reducido</li><li>⚠️ Sin tracción comercial</li><li>⚠️ Prototipo en diseño</li><li>⚠️ Convenio UNIOVI en trámite</li></ul></div>
-                <div class="card" style="border-top:4px solid #3b82f6;"><h3 style="color:#3b82f6;">OPORTUNIDADES</h3><ul style="text-align:left;font-size:0.82rem;"><li>🚀 Fondos UE Agenda 2030</li><li>🚀 Auge consumo sostenible</li><li>🚀 Locales vacíos baratos</li><li>🚀 Cámara de Comercio Oviedo</li></ul></div>
-                <div class="card" style="border-top:4px solid #ef4444;"><h3 style="color:#ef4444;">AMENAZAS</h3><ul style="text-align:left;font-size:0.82rem;"><li>⛔ Volatilidad energética</li><li>⛔ Competencia grandes superficies</li><li>⛔ Inercia del sector</li><li>⛔ Vacío regulatorio</li></ul></div>
+        <!-- ============================================ -->
+        <!-- SLIDE 7: MERCADO OBJETIVO                    -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="7">
+            <div class="slide-content">
+                <h1 class="slide-title">Del Micro-Nodo al <span class="highlight">Consumidor Urbano</span></h1>
+                <div class="card-grid">
+                    <div class="card"><div class="card-icon">👥</div><h3>Eco-Consumidores</h3><p><strong>25-45 años</strong></p><ul style="text-align:left;margin-top:6px;"><li>Foodies, sostenibilidad</li><li>+20-30% por calidad</li></ul></div>
+                    <div class="card"><div class="card-icon">🍽️</div><h3>Canal HORECA</h3><p><strong>Restaurantes km0</strong></p><ul style="text-align:left;margin-top:6px;"><li>Hoteles boutique</li><li>Diferenciación</li></ul></div>
+                    <div class="card"><div class="card-icon">🏫</div><h3>Sector Público</h3><p><strong>Calidad nutricional</strong></p><ul style="text-align:left;margin-top:6px;"><li>Comedores escolares</li><li>Hospitales</li></ul></div>
+                </div>
+                <div class="card" style="max-width:700px;text-align:center;">
+                    <h3 style="color:var(--accent-strong);margin-bottom:6px;">Estrategia</h3>
+                    <p style="font-size:clamp(0.7rem,1vw,0.85rem);"><strong>Fase 1:</strong> Asturias · <strong>Fase 2:</strong> Madrid/Barcelona · <strong>Fase 3:</strong> Franquicia de nodos</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 10: EQUIPO (8 PERSONAS, COLABS AL FINAL) -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="10">
-        <div class="slide-content">
-            <h1 class="slide-title">Nuestro <span class="highlight">Equipo</span></h1>
-            <div class="team-grid">
-                <div class="card">
-                    <div class="card-icon">⚡</div>
-                    <h3>Leo</h3>
-                    <p style="color:var(--accent-strong);font-weight:600;font-size:0.62rem;">Fundador</p>
-                    <p style="font-size:0.6rem;">Finanzas + Ing. Electrónica</p>
+        <!-- ============================================ -->
+        <!-- SLIDE 8: COMPETENCIA                         -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="8">
+            <div class="slide-content">
+                <h1 class="slide-title">Posicionamiento <span class="highlight">Único</span></h1>
+                <div class="table-wrapper">
+                    <table class="comparison-table">
+                        <thead><tr><th>Competidor</th><th>Precio</th><th>Calidad</th><th>Autom.</th><th>Sostenib.</th><th>Pesticidas</th><th>Desperdicio</th></tr></thead>
+                        <tbody>
+                            <tr><td>Supermercados</td><td>€€</td><td>⭐⭐</td><td>❌</td><td>⚠️</td><td>⚠️ Sí</td><td>⚠️ Alto</td></tr>
+                            <tr><td>Importación</td><td>€</td><td>⭐</td><td>❌</td><td>❌</td><td>⚠️ Sí</td><td>⚠️ Alto</td></tr>
+                            <tr><td>Productores Locales</td><td>€€€</td><td>⭐⭐⭐⭐</td><td>❌</td><td>✅</td><td>✅ No</td><td>✅ Bajo</td></tr>
+                            <tr class="highlight-row"><td style="color:var(--accent-strong);">AGROAILAB</td><td style="color:var(--accent-strong);">€€</td><td style="color:var(--accent-strong);">⭐⭐⭐⭐⭐</td><td style="color:var(--accent-strong);">✅ IA</td><td style="color:var(--accent-strong);">✅ 95% agua</td><td style="color:var(--accent-strong);">✅ Nunca</td><td style="color:var(--accent-strong);">✅ Cero</td></tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="card">
-                    <div class="card-icon">⚙️</div>
-                    <h3>Álvaro</h3>
-                    <p style="color:var(--accent-strong);font-weight:600;font-size:0.62rem;">Ing. Mecánica</p>
-                    <p style="font-size:0.6rem;">Diseño y prototipado</p>
+                <div class="card" style="max-width:700px;text-align:center;">
+                    <p style="font-size:clamp(0.7rem,1vw,0.85rem);"><strong>Ventaja Clave:</strong> <span class="highlight">Personalización IA + Cero pesticidas + Cero desperdicio + Suscripción ilimitada</span></p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📢</div>
-                    <h3>Marco</h3>
-                    <p style="color:var(--accent-strong);font-weight:600;font-size:0.62rem;">Comunicación</p>
-                    <p style="font-size:0.6rem;">Ing. Mecánica</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🧪</div>
-                    <h3>Kevin</h3>
-                    <p style="color:var(--accent-strong);font-weight:600;font-size:0.62rem;">Asesor Agrario</p>
-                    <p style="font-size:0.6rem;">Ing. Alimentos</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">💻</div>
-                    <h3>Christian</h3>
-                    <p style="color:var(--accent-strong);font-weight:600;font-size:0.62rem;">Colaborador</p>
-                    <p style="font-size:0.6rem;">Ing. Informática</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🏭</div>
-                    <h3>Sofia</h3>
-                    <p style="color:var(--accent-strong);font-weight:600;font-size:0.62rem;">Colaboradora</p>
-                    <p style="font-size:0.6rem;">Asesora Agraria</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🏗️</div>
-                    <h3>Bruno</h3>
-                    <p style="color:var(--accent-strong);font-weight:600;font-size:0.62rem;">Colaborador</p>
-                    <p style="font-size:0.6rem;">Ing. Org. Industrial</p>
-                </div>
-            </div>
-            <div class="card" style="max-width:650px;text-align:center;margin-top:4px;">
-                <p style="font-size:0.72rem;color:var(--muted);"><strong>Asociación Universitaria AgroAILab</strong> en constitución · UNIOVI + Cámara de Comercio Oviedo</p>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 11: PLAN DE NEGOCIO (SIN COMPARATIVA)  -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="11">
-        <div class="slide-content">
-            <h1 class="slide-title">Plan de <span class="highlight">Negocio</span></h1>
-            <p class="slide-subtitle">Del prototipo a la máquina productiva</p>
-            <div class="card-grid" style="grid-template-columns:1fr 1fr;">
-                <div class="card">
-                    <h3 style="color:var(--accent-strong);">🔬 MVP (16 plantas)</h3>
-                    <p style="font-size:0.85rem;"><strong>Coste:</strong> &lt;2.000€</p>
-                    <p style="font-size:0.8rem;">Estructura, nebulización, LEDs, sensores, electrónica, cámara.</p>
+        <!-- ============================================ -->
+        <!-- SLIDE 9: DAFO                               -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="9">
+            <div class="slide-content">
+                <h1 class="slide-title">Análisis <span class="highlight">DAFO</span></h1>
+                <div class="card-grid" style="grid-template-columns:repeat(2,1fr);">
+                    <div class="card border-top-green"><h3 class="text-green">FORTALEZAS</h3><ul style="text-align:left;font-size:clamp(0.68rem,0.9vw,0.82rem);"><li>✅ Sinergia técnica del equipo</li><li>✅ Conocimiento del mercado</li><li>✅ Modelo Asset-Light</li><li>✅ Respaldo universitario</li></ul></div>
+                    <div class="card border-top-amber"><h3 class="text-amber">DEBILIDADES</h3><ul style="text-align:left;font-size:clamp(0.68rem,0.9vw,0.82rem);"><li>⚠️ Equipo reducido</li><li>⚠️ Sin tracción comercial</li><li>⚠️ Prototipo en diseño</li><li>⚠️ Convenio UNIOVI en trámite</li></ul></div>
+                    <div class="card border-top-blue"><h3 class="text-blue">OPORTUNIDADES</h3><ul style="text-align:left;font-size:clamp(0.68rem,0.9vw,0.82rem);"><li>🚀 Fondos UE Agenda 2030</li><li>🚀 Auge consumo sostenible</li><li>🚀 Locales vacíos baratos</li><li>🚀 Cámara de Comercio Oviedo</li></ul></div>
+                    <div class="card border-top-red"><h3 class="text-red">AMENAZAS</h3><ul style="text-align:left;font-size:clamp(0.68rem,0.9vw,0.82rem);"><li>⛔ Volatilidad energética</li><li>⛔ Competencia grandes superficies</li><li>⛔ Inercia del sector</li><li>⛔ Vacío regulatorio</li></ul></div>
                 </div>
-                <div class="card">
-                    <h3 style="color:var(--accent-strong);">🏭 Máquina Productiva (4.000 plantas)</h3>
-                    <p style="font-size:0.85rem;"><strong>Coste estimado:</strong> €25.000 - 30.000</p>
-                    <p style="font-size:0.8rem;">Sistema aeropónico escalado, robótica, IA, carcasas.</p>
-                </div>
-            </div>
-            <div class="card" style="max-width:700px;">
-                <h3 style="color:var(--accent-strong);">💰 Ingresos Mensuales (4.000 plantas)</h3>
-                <p style="font-size:0.85rem;">4.000 plantas × €2/planta/mes = <strong>€8.000/mes</strong></p>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;font-size:0.8rem;">
-                    <div><strong>Gastos operativos (40%):</strong> €3.200</div>
-                    <div><strong>Margen neto:</strong> €4.800/mes</div>
-                    <div>Alquiler, electricidad, nutrientes, mantenimiento</div>
-                    <div><strong>Payback:</strong> ~6-8 meses</div>
-                </div>
-            </div>
-            <div class="card" style="max-width:700px;">
-                <h3 style="color:var(--accent-strong);">🏪 Venta o Alquiler de Máquinas</h3>
-                <p style="font-size:0.85rem;"><strong>Precio de venta:</strong> €25.000 - 30.000 | <strong>Alquiler:</strong> €1.500-2.000/mes</p>
-                <p style="font-size:0.8rem;">Similar a leasing industrial.</p>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 12: COMPARATIVA DE NEGOCIOS            -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="12">
-        <div class="slide-content">
-            <h1 class="slide-title">¿Dónde está la <span class="highlight">rentabilidad</span>?</h1>
-            <p class="slide-subtitle">Comparación con modelos de negocio conocidos</p>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🧺</div>
-                    <h3>Lavandería Autoservicio</h3>
-                    <p style="font-size:0.8rem;"><strong>Inversión:</strong> €30.000 (10 máquinas)</p>
-                    <p style="font-size:0.8rem;"><strong>Ingreso mensual:</strong> €3.000 - 5.000</p>
-                    <p style="font-size:0.8rem;"><strong>Margen:</strong> 30-40% tras alquiler y electricidad</p>
-                    <p style="font-size:0.78rem;color:var(--muted);">Negocio probado, mucha competencia.</p>
+        <!-- ============================================ -->
+        <!-- SLIDE 10: EQUIPO (8 PERSONAS, COLABS AL FINAL) -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="10">
+            <div class="slide-content">
+                <h1 class="slide-title">Nuestro <span class="highlight">Equipo</span></h1>
+                <div class="team-grid">
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Leo</h3>
+                        <p style="color:var(--accent-strong);font-weight:600;font-size:clamp(0.5rem,0.7vw,0.62rem);">Fundador</p>
+                        <p style="font-size:clamp(0.48rem,0.65vw,0.6rem);">Finanzas + Ing. Electrónica</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚙️</div>
+                        <h3>Álvaro</h3>
+                        <p style="color:var(--accent-strong);font-weight:600;font-size:clamp(0.5rem,0.7vw,0.62rem);">Ing. Mecánica</p>
+                        <p style="font-size:clamp(0.48rem,0.65vw,0.6rem);">Diseño y prototipado</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📢</div>
+                        <h3>Marco</h3>
+                        <p style="color:var(--accent-strong);font-weight:600;font-size:clamp(0.5rem,0.7vw,0.62rem);">Comunicación</p>
+                        <p style="font-size:clamp(0.48rem,0.65vw,0.6rem);">Ing. Mecánica</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧪</div>
+                        <h3>Kevin</h3>
+                        <p style="color:var(--accent-strong);font-weight:600;font-size:clamp(0.5rem,0.7vw,0.62rem);">Asesor Agrario</p>
+                        <p style="font-size:clamp(0.48rem,0.65vw,0.6rem);">Ing. Alimentos</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Christian</h3>
+                        <p style="color:var(--accent-strong);font-weight:600;font-size:clamp(0.5rem,0.7vw,0.62rem);">Colaborador</p>
+                        <p style="font-size:clamp(0.48rem,0.65vw,0.6rem);">Ing. Informática</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏭</div>
+                        <h3>Sofia</h3>
+                        <p style="color:var(--accent-strong);font-weight:600;font-size:clamp(0.5rem,0.7vw,0.62rem);">Colaboradora</p>
+                        <p style="font-size:clamp(0.48rem,0.65vw,0.6rem);">Asesora Agraria</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏗️</div>
+                        <h3>Bruno</h3>
+                        <p style="color:var(--accent-strong);font-weight:600;font-size:clamp(0.5rem,0.7vw,0.62rem);">Colaborador</p>
+                        <p style="font-size:clamp(0.48rem,0.65vw,0.6rem);">Ing. Org. Industrial</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">☕</div>
-                    <h3>Cafetería de Barrio</h3>
-                    <p style="font-size:0.8rem;"><strong>Inversión:</strong> €20.000 - 40.000</p>
-                    <p style="font-size:0.8rem;"><strong>Ingreso mensual:</strong> €2.000 - 4.000</p>
-                    <p style="font-size:0.8rem;"><strong>Margen:</strong> 10-15% (cubre un salario mínimo)</p>
-                    <p style="font-size:0.78rem;color:var(--muted);">Alta carga operativa, depende del tráfico local.</p>
+                <div class="card" style="max-width:650px;text-align:center;margin-top:4px;">
+                    <p style="font-size:clamp(0.6rem,0.8vw,0.72rem);color:var(--muted);"><strong>Asociación Universitaria AgroAILab</strong> en constitución · UNIOVI + Cámara de Comercio Oviedo</p>
                 </div>
             </div>
-            <div class="card" style="max-width:700px;border-left:4px solid var(--accent-strong);text-align:center;">
-                <h3 style="color:var(--accent-strong);">🚀 AgroAILab (1 máquina)</h3>
-                <p style="font-size:0.85rem;"><strong>Inversión:</strong> €25.000 | <strong>Ingreso:</strong> €8.000/mes | <strong>Margen neto:</strong> 60%</p>
-                <p style="font-size:0.8rem;">Impacto positivo, suscripción recurrente, sin residuos.</p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SLIDE 11: PLAN DE NEGOCIO (SIN COMPARATIVA)  -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="11">
+            <div class="slide-content">
+                <h1 class="slide-title">Plan de <span class="highlight">Negocio</span></h1>
+                <p class="slide-subtitle">Del prototipo a la máquina productiva</p>
+                <div class="card-grid" style="grid-template-columns:1fr 1fr;">
+                    <div class="card">
+                        <h3 style="color:var(--accent-strong);">🔬 MVP (16 plantas)</h3>
+                        <p style="font-size:clamp(0.7rem,1vw,0.85rem);"><strong>Coste:</strong> &lt;2.000€</p>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);">Estructura, nebulización, LEDs, sensores, electrónica, cámara.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="color:var(--accent-strong);">🏭 Máquina Productiva (4.000 plantas)</h3>
+                        <p style="font-size:clamp(0.7rem,1vw,0.85rem);"><strong>Coste estimado:</strong> €25.000 - 30.000</p>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);">Sistema aeropónico escalado, robótica, IA, carcasas.</p>
+                    </div>
+                </div>
+                <div class="card" style="max-width:700px;">
+                    <h3 style="color:var(--accent-strong);">💰 Ingresos Mensuales (4.000 plantas)</h3>
+                    <p style="font-size:clamp(0.7rem,1vw,0.85rem);">4.000 plantas × €2/planta/mes = <strong>€8.000/mes</strong></p>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;font-size:clamp(0.65rem,0.9vw,0.8rem);">
+                        <div><strong>Gastos operativos (40%):</strong> €3.200</div>
+                        <div><strong>Margen neto:</strong> €4.800/mes</div>
+                        <div>Alquiler, electricidad, nutrientes, mantenimiento</div>
+                        <div><strong>Payback:</strong> ~6-8 meses</div>
+                    </div>
+                </div>
+                <div class="card" style="max-width:700px;">
+                    <h3 style="color:var(--accent-strong);">🏪 Venta o Alquiler de Máquinas</h3>
+                    <p style="font-size:clamp(0.7rem,1vw,0.85rem);"><strong>Precio de venta:</strong> €25.000 - 30.000 | <strong>Alquiler:</strong> €1.500-2.000/mes</p>
+                    <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);">Similar a leasing industrial.</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- SLIDE 13: PROYECCIONES FINANCIERAS           -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="13">
-        <div class="slide-content">
-            <h1 class="slide-title">Proyecciones <span class="highlight">Financieras</span></h1>
-            <p class="slide-subtitle">Basado en una máquina de 4.000 plantas (gastos operativos ~40%)</p>
-            <div class="stats-grid" style="grid-template-columns:repeat(2,1fr);max-width:450px;">
-                <div class="stat-card"><span class="stat-number">€2.000</span><span class="stat-label">Inversión inicial<br>prototipo</span></div>
-                <div class="stat-card"><span class="stat-number">€25-30k</span><span class="stat-label">Inversión máquina<br>productiva</span></div>
-            </div>
-            <table class="comparison-table" style="margin-top:8px;">
-                <thead><tr><th>Concepto</th><th>Año 1</th><th>Año 2</th><th>Año 3</th></tr></thead>
-                <tbody>
-                    <tr><td>Máquinas operativas</td><td>1</td><td>3</td><td>6</td></tr>
-                    <tr><td>Plantas totales</td><td>4.000</td><td>12.000</td><td>24.000</td></tr>
-                    <tr><td>Ingresos brutos</td><td>€96k</td><td>€288k</td><td>€576k</td></tr>
-                    <tr><td>Gastos operativos (40%)</td><td>-€38.4k</td><td>-€115.2k</td><td>-€230.4k</td></tr>
-                    <tr class="highlight-row"><td style="color:var(--accent-strong);">Margen Neto</td><td style="color:var(--accent-strong);">€57.6k</td><td style="color:var(--accent-strong);">€172.8k</td><td style="color:var(--accent-strong);">€345.6k</td></tr>
-                </tbody>
-            </table>
-            <div class="card" style="max-width:500px;text-align:center;">
-                <p style="font-size:0.95rem;"><strong>Payback por máquina:</strong> <span class="highlight">6-8 meses</span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- SLIDE 14: CIERRE (COLOR ARMONIZADO)          -->
-    <!-- ============================================ -->
-    <div class="slide" data-slide="14">
-        <div class="slide-content">
-            <h1 class="slide-title">El Futuro de la Agricultura es <span class="highlight">Descentralizado</span></h1>
-            <div class="card" style="max-width:700px;text-align:center;">
-                <h3 style="color:var(--accent-strong);margin-bottom:10px;">Próximos Pasos</h3>
-                <p style="font-size:0.9rem;">✅ Formalizar convenio UNIOVI<br>✅ Constituir asociación universitaria<br>✅ Participar de PROGRAMA UNIOVI EMPRENDE<br>✅ Fabricar prototipo 4x4<br>✅ Primer nodo piloto (Q4 2026)</p>
-            </div>
-            <div class="card" style="max-width:700px; text-align:center; border-left:4px solid var(--accent-strong); background: var(--accent-bg);">
-                <p style="font-size:1.05rem; color:var(--accent-strong); font-weight:700; margin-bottom:6px;">¿Cultivamos juntos el futuro?</p>
-<p style="font-size:0.85rem; color:var(--muted);">
-    <a href="https://www.agroailab.com" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
-        <i class="fas fa-globe" style="margin-right:5px; color:var(--accent-strong);"></i>
-        <strong>www.agroailab.com</strong>
-    </a>
-</p>
+        <!-- ============================================ -->
+        <!-- SLIDE 12: COMPARATIVA DE NEGOCIOS            -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="12">
+            <div class="slide-content">
+                <h1 class="slide-title">¿Dónde está la <span class="highlight">rentabilidad</span>?</h1>
+                <p class="slide-subtitle">Comparación con modelos de negocio conocidos</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🧺</div>
+                        <h3>Lavandería Autoservicio</h3>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);"><strong>Inversión:</strong> €30.000 (10 máquinas)</p>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);"><strong>Ingreso mensual:</strong> €3.000 - 5.000</p>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);"><strong>Margen:</strong> 30-40% tras alquiler y electricidad</p>
+                        <p style="font-size:clamp(0.6rem,0.8vw,0.78rem);color:var(--muted);">Negocio probado, mucha competencia.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">☕</div>
+                        <h3>Cafetería de Barrio</h3>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);"><strong>Inversión:</strong> €20.000 - 40.000</p>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);"><strong>Ingreso mensual:</strong> €2.000 - 4.000</p>
+                        <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);"><strong>Margen:</strong> 10-15% (cubre un salario mínimo)</p>
+                        <p style="font-size:clamp(0.6rem,0.8vw,0.78rem);color:var(--muted);">Alta carga operativa, depende del tráfico local.</p>
+                    </div>
+                </div>
+                <div class="card border-left-accent" style="max-width:700px;text-align:center;">
+                    <h3 style="color:var(--accent-strong);">🚀 AgroAILab (1 máquina)</h3>
+                    <p style="font-size:clamp(0.7rem,1vw,0.85rem);"><strong>Inversión:</strong> €25.000 | <strong>Ingreso:</strong> €8.000/mes | <strong>Margen neto:</strong> 60%</p>
+                    <p style="font-size:clamp(0.65rem,0.9vw,0.8rem);">Impacto positivo, suscripción recurrente, sin residuos.</p>
+                </div>
             </div>
         </div>
+
+        <!-- ============================================ -->
+        <!-- SLIDE 13: PROYECCIONES FINANCIERAS           -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="13">
+            <div class="slide-content">
+                <h1 class="slide-title">Proyecciones <span class="highlight">Financieras</span></h1>
+                <p class="slide-subtitle">Basado en una máquina de 4.000 plantas (gastos operativos ~40%)</p>
+                <div class="stats-grid" style="grid-template-columns:repeat(2,1fr);max-width:450px;">
+                    <div class="stat-card"><span class="stat-number">€2.000</span><span class="stat-label">Inversión inicial<br>prototipo</span></div>
+                    <div class="stat-card"><span class="stat-number">€25-30k</span><span class="stat-label">Inversión máquina<br>productiva</span></div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="comparison-table" style="margin-top:8px;">
+                        <thead><tr><th>Concepto</th><th>Año 1</th><th>Año 2</th><th>Año 3</th></tr></thead>
+                        <tbody>
+                            <tr><td>Máquinas operativas</td><td>1</td><td>3</td><td>6</td></tr>
+                            <tr><td>Plantas totales</td><td>4.000</td><td>12.000</td><td>24.000</td></tr>
+                            <tr><td>Ingresos brutos</td><td>€96k</td><td>€288k</td><td>€576k</td></tr>
+                            <tr><td>Gastos operativos (40%)</td><td>-€38.4k</td><td>-€115.2k</td><td>-€230.4k</td></tr>
+                            <tr class="highlight-row"><td style="color:var(--accent-strong);">Margen Neto</td><td style="color:var(--accent-strong);">€57.6k</td><td style="color:var(--accent-strong);">€172.8k</td><td style="color:var(--accent-strong);">€345.6k</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card" style="max-width:500px;text-align:center;">
+                    <p style="font-size:clamp(0.8rem,1.1vw,0.95rem);"><strong>Payback por máquina:</strong> <span class="highlight">6-8 meses</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SLIDE 14: CIERRE (COLOR ARMONIZADO)          -->
+        <!-- ============================================ -->
+        <div class="slide" data-slide="14">
+            <div class="slide-content">
+                <h1 class="slide-title">El Futuro de la Agricultura es <span class="highlight">Descentralizado</span></h1>
+                <div class="card" style="max-width:700px;text-align:center;">
+                    <h3 style="color:var(--accent-strong);margin-bottom:10px;">Próximos Pasos</h3>
+                    <p style="font-size:clamp(0.75rem,1vw,0.9rem);">✅ Formalizar convenio UNIOVI<br>✅ Constituir asociación universitaria<br>✅ Participar de PROGRAMA UNIOVI EMPRENDE<br>✅ Fabricar prototipo 4x4<br>✅ Primer nodo piloto (Q4 2026)</p>
+                </div>
+                <div class="card border-left-accent accent-bg-card" style="max-width:700px; text-align:center;">
+                    <p style="font-size:clamp(0.85rem,1.2vw,1.05rem); color:var(--accent-strong); font-weight:700; margin-bottom:6px;">¿Cultivamos juntos el futuro?</p>
+                    <p style="font-size:clamp(0.7rem,0.95vw,0.85rem); color:var(--muted);">
+                        <a href="https://www.agroailab.com" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-globe" style="margin-right:5px; color:var(--accent-strong);"></i>
+                            <strong>www.agroailab.com</strong>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de navegación -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevSlide()" title="Anterior (←)" aria-label="Diapositiva anterior"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn" onclick="nextSlide()" title="Siguiente (→)" aria-label="Diapositiva siguiente"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="slide-indicators" id="slideIndicators"></div>
     </div>
 
-    <!-- Botones de navegación -->
-    <div class="nav-buttons">
-        <button class="nav-btn" onclick="prevSlide()" title="Anterior (←)"><i class="fas fa-chevron-left"></i></button>
-        <button class="nav-btn" onclick="nextSlide()" title="Siguiente (→)"><i class="fas fa-chevron-right"></i></button>
-    </div>
-    <div class="slide-indicators" id="slideIndicators"></div>
-</div>
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentSlide = 1;
+        const logoContainer = document.getElementById('logoContainer');
+        const mainLogo = document.getElementById('mainLogo');
 
-<script>
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    let currentSlide = 1;
-    const logoContainer = document.getElementById('logoContainer');
-    const mainLogo = document.getElementById('mainLogo');
-
-    function initIndicators() {
-        const container = document.getElementById('slideIndicators');
-        container.innerHTML = '';
-        for (let i = 1; i <= totalSlides; i++) {
-            const ind = document.createElement('div');
-            ind.className = 'indicator' + (i === 1 ? ' active' : '');
-            ind.onclick = () => goToSlide(i);
-            ind.title = 'Slide ' + i;
-            container.appendChild(ind);
-        }
-    }
-
-    function updateSlide() {
-        slides.forEach((s, idx) => {
-            s.classList.toggle('active', idx + 1 === currentSlide);
-            if (idx + 1 === currentSlide) s.scrollTop = 0;
-        });
-        document.getElementById('slideNumber').textContent = currentSlide + ' / ' + totalSlides;
-        document.querySelectorAll('.indicator').forEach((ind, idx) => {
-            ind.classList.toggle('active', idx + 1 === currentSlide);
-        });
-
-        // Animación del logo: centrado grande en slide 1, esquina pequeño en demás
-        if (currentSlide === 1) {
-            logoContainer.classList.add('centered');
-            logoContainer.classList.remove('corner');
-            mainLogo.classList.add('logo-big');
-            mainLogo.classList.remove('logo-small');
-            mainLogo.style.height = '260px';
-        } else {
-            logoContainer.classList.remove('centered');
-            logoContainer.classList.add('corner');
-            mainLogo.classList.remove('logo-big');
-            mainLogo.classList.add('logo-small');
-            mainLogo.style.height = '36px';
-        }
-    }
-
-    function goToSlide(n) { if (n >= 1 && n <= totalSlides) { currentSlide = n; updateSlide(); } }
-    function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; updateSlide(); } }
-    function prevSlide() { if (currentSlide > 1) { currentSlide--; updateSlide(); } }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
-        else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
-        else if (e.key === 'Home') { e.preventDefault(); goToSlide(1); }
-        else if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides); }
-    });
-
-    let touchStartX = 0;
-    document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-    document.addEventListener('touchend', (e) => {
-        const diff = touchStartX - e.changedTouches[0].screenX;
-        if (Math.abs(diff) > 60) { diff > 0 ? nextSlide() : prevSlide(); }
-    }, { passive: true });
-
-    document.addEventListener('wheel', (e) => {
-        const activeSlide = document.querySelector('.slide.active');
-        if (activeSlide) {
-            const atTop = activeSlide.scrollTop === 0;
-            const atBottom = activeSlide.scrollTop + activeSlide.clientHeight >= activeSlide.scrollHeight - 5;
-            if ((e.deltaY > 0 && atBottom) || (e.deltaY < 0 && atTop)) {
-                e.preventDefault();
-                e.deltaY > 0 ? nextSlide() : prevSlide();
+        function initIndicators() {
+            const container = document.getElementById('slideIndicators');
+            container.innerHTML = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                const ind = document.createElement('div');
+                ind.className = 'indicator' + (i === 1 ? ' active' : '');
+                ind.onclick = () => goToSlide(i);
+                ind.title = 'Slide ' + i;
+                ind.setAttribute('aria-label', 'Ir a diapositiva ' + i);
+                ind.setAttribute('role', 'button');
+                ind.setAttribute('tabindex', '0');
+                ind.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        goToSlide(i);
+                    }
+                });
+                container.appendChild(ind);
             }
         }
-    }, { passive: false });
 
-    initIndicators();
-    updateSlide();
-</script>
+        function updateSlide() {
+            slides.forEach((s, idx) => {
+                s.classList.toggle('active', idx + 1 === currentSlide);
+                if (idx + 1 === currentSlide) s.scrollTop = 0;
+            });
+            document.getElementById('slideNumber').textContent = currentSlide + ' / ' + totalSlides;
+            document.querySelectorAll('.indicator').forEach((ind, idx) => {
+                ind.classList.toggle('active', idx + 1 === currentSlide);
+            });
+
+            if (currentSlide === 1) {
+                logoContainer.classList.add('centered');
+                logoContainer.classList.remove('corner');
+                mainLogo.classList.add('logo-big');
+                mainLogo.classList.remove('logo-small');
+                mainLogo.style.height = '';
+                mainLogo.style.width = '';
+            } else {
+                logoContainer.classList.remove('centered');
+                logoContainer.classList.add('corner');
+                mainLogo.classList.remove('logo-big');
+                mainLogo.classList.add('logo-small');
+                mainLogo.style.height = '';
+                mainLogo.style.width = '';
+            }
+        }
+
+        function goToSlide(n) {
+            if (n >= 1 && n <= totalSlides) {
+                currentSlide = n;
+                updateSlide();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                goToSlide(1);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                goToSlide(totalSlides);
+            }
+        });
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            const diffX = touchStartX - e.changedTouches[0].screenX;
+            const diffY = touchStartY - e.changedTouches[0].screenY;
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                diffX > 0 ? nextSlide() : prevSlide();
+            }
+        }, { passive: true });
+
+        document.addEventListener('wheel', (e) => {
+            const activeSlide = document.querySelector('.slide.active');
+            if (activeSlide) {
+                const atTop = activeSlide.scrollTop <= 1;
+                const atBottom = activeSlide.scrollTop + activeSlide.clientHeight >= activeSlide.scrollHeight - 5;
+                if ((e.deltaY > 0 && atBottom) || (e.deltaY < 0 && atTop)) {
+                    e.preventDefault();
+                    e.deltaY > 0 ? nextSlide() : prevSlide();
+                }
+            }
+        }, { passive: false });
+
+        initIndicators();
+        updateSlide();
+
+        window.addEventListener('resize', () => {
+            const activeSlideEl = document.querySelector('.slide.active');
+            if (activeSlideEl) {
+                activeSlideEl.scrollTop = 0;
+            }
+        });
+    </script>
 </body>
 </html>
